@@ -144,7 +144,14 @@ class Component extends DCLogic {
     return rows.filter(r => r.some(v => v.trim() !== ""));
   }
 
-  teamKey(s) { return (s || "").trim().toLowerCase().replace(/\s*\/\s*/g, "/").replace(/\s+/g, " "); }
+  teamKey(s) {
+    return (s || "")
+      .split("/")
+      .map(p => p.trim().toLowerCase().replace(/\s+/g, " "))
+      .filter(Boolean)
+      .sort()
+      .join("/");
+  }
 
   loadAll() {
     const bust = (u) => u + (u.indexOf("?") > -1 ? "&" : "?") + "_=" + Date.now();
@@ -171,6 +178,7 @@ class Component extends DCLogic {
 
       const head = parsed[0].map(h => (h || "").trim());
       const teamCol = head.findIndex(h => /team/i.test(h));
+      const tsCol = head.findIndex(h => /timestamp/i.test(h));
       const holeCols = [];
       head.forEach((h, i) => {
         const m = h.match(/hole\s*\[?\s*(\d{1,2})/i) || h.match(/\[\s*hole\s*(\d{1,2})/i);
@@ -181,20 +189,35 @@ class Component extends DCLogic {
         return;
       }
 
+      // Merge in submission-time order (not raw row order) so the latest entry always wins per hole.
+      let dataRows = parsed.slice(1);
+      if (tsCol >= 0) {
+        dataRows = dataRows
+          .map((c, idx) => ({ c, idx, t: Date.parse(c[tsCol]) }))
+          .sort((a, b) => {
+            const at = isNaN(a.t) ? -Infinity : a.t, bt = isNaN(b.t) ? -Infinity : b.t;
+            return at - bt || a.idx - b.idx;
+          })
+          .map(r => r.c);
+      }
+
+      // Each submission carries a full scorecard snapshot, not an incremental patch —
+      // so only the latest row per team is used (overwrites, not merges).
       const scores = {}; let entries = 0;
-      parsed.slice(1).forEach(c => {
+      dataRows.forEach(c => {
         const raw = (c[teamCol] || "").trim();
         if (!raw) return;
         const k = this.teamKey(raw);
-        if (!scores[k]) scores[k] = { name: raw, holes: {} };
+        const holes = {};
         holeCols.forEach(({ i, n }) => {
           const v = (c[i] || "").trim();
-          if (!v) return;
-          if (/^x$/i.test(v)) { delete scores[k].holes[n]; entries++; return; }
+          if (!v || /^x$/i.test(v)) return;
           const num = parseInt(v.replace(/\+$/, ""), 10);
-          if (!isNaN(num) && num > 0 && num < 20) { scores[k].holes[n] = num; entries++; }
+          if (!isNaN(num) && num > 0 && num < 20) holes[n] = num;
         });
+        scores[k] = { name: raw, holes };
       });
+      Object.values(scores).forEach(t => { entries += Object.keys(t.holes).length; });
 
       this.setState({ scores, hcps, order, updated: new Date(), entries, warn: "" });
     }).catch(e => this.setState({ warn: "Couldn't read the responses sheet (" + e.message + "). Publish that tab to the web as CSV, or share the sheet so anyone with the link can view.", updated: new Date() }));
