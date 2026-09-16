@@ -70,7 +70,7 @@ a:hover{color:#123C2F}
 </div>
 
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;entryPageUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;score-entry.html&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Form&quot;},&quot;sheetCsvUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://docs.google.com/spreadsheets/d/e/2PACX-1vQ3dsuBO4KVfRMtFiqbqm_-5YykxYuNmkXlE8P6L7KcNIFRiOteD8NM4F6NMqnmrOU0m2p8HG3EQmyc/pub?gid=2114113616&amp;single=true&amp;output=csv&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Form&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;entryPageUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://robgolf.vercel.app/score-entry.html&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
   state = { rows: [], warn: "", copied: null, copiedNames: false, qrReady: false };
 
@@ -129,7 +129,7 @@ class Component extends DCLogic {
   }
 
   formUrl(name) {
-    const base = this.props.entryPageUrl || "score-entry.html";
+    const base = this.props.entryPageUrl || "https://robgolf.vercel.app/score-entry.html";
     return base + "?team=" + encodeURIComponent(name);
   }
 
