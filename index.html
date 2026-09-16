@@ -238,10 +238,10 @@
     <div style="max-width:1120px; margin:0 auto">
       <div style="font-family:'DM Mono',monospace; font-size:12px; letter-spacing:0.2em; text-transform:uppercase; color:#E05A2B; margin-bottom:14px">05 · The Payout</div>
       <h2 style="margin:0 0 12px; font-family:'Archivo Black',Helvetica,sans-serif; font-size:clamp(36px,5.5vw,68px); line-height:0.92; letter-spacing:-0.03em; text-transform:uppercase">Prize pool</h2>
-      <p style="max-width:620px; margin:0 0 44px; font-size:17px; line-height:1.6; color:#3B5546; text-wrap:pretty">1st and 2nd place, 4 raffles, 1 long drive, 4 closest to the pin, and the remainder goes into the skins game. A good chunk of the pool goes to something everyone has a chance to win.</p>
+      <p style="max-width:620px; margin:0 0 44px; font-size:17px; line-height:1.6; color:#3B5546; text-wrap:pretty">1st and 2nd place (gross and net), 4 raffles, 1 long drive, 4 closest to the pin, and the remainder goes into the skins game. A good chunk of the pool goes to something everyone has a chance to win.</p>
 
       <div style="display:flex; flex-wrap:wrap; gap:0; border-top:3px solid #123C2F; border-left:3px solid #123C2F; margin-bottom:52px">
-        <div style="flex:1 1 150px; padding:20px 22px; border-right:3px solid #123C2F; border-bottom:3px solid #123C2F"><div style="font-family:'Archivo Black',sans-serif; font-size:34px; letter-spacing:-0.03em; color:#E05A2B">2</div><div style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#3B5546; margin-top:6px">Place finishes</div></div>
+        <div style="flex:1 1 150px; padding:20px 22px; border-right:3px solid #123C2F; border-bottom:3px solid #123C2F"><div style="font-family:'Archivo Black',sans-serif; font-size:34px; letter-spacing:-0.03em; color:#E05A2B">4</div><div style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#3B5546; margin-top:6px">Place finishes</div></div>
         <div style="flex:1 1 150px; padding:20px 22px; border-right:3px solid #123C2F; border-bottom:3px solid #123C2F"><div style="font-family:'Archivo Black',sans-serif; font-size:34px; letter-spacing:-0.03em; color:#E05A2B">4</div><div style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#3B5546; margin-top:6px">Raffles</div></div>
         <div style="flex:1 1 150px; padding:20px 22px; border-right:3px solid #123C2F; border-bottom:3px solid #123C2F"><div style="font-family:'Archivo Black',sans-serif; font-size:34px; letter-spacing:-0.03em; color:#E05A2B">1</div><div style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#3B5546; margin-top:6px">Long drive</div></div>
         <div style="flex:1 1 150px; padding:20px 22px; border-right:3px solid #123C2F; border-bottom:3px solid #123C2F"><div style="font-family:'Archivo Black',sans-serif; font-size:34px; letter-spacing:-0.03em; color:#E05A2B">4</div><div style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#3B5546; margin-top:6px">Closest to pin</div></div>
@@ -250,15 +250,42 @@
 
       <sc-if value="{{ showPayouts }}" hint-placeholder-val="{{ true }}">
         <div>
-          <h3 style="margin:0 0 8px; font-family:'Archivo Black',Helvetica,sans-serif; font-size:26px; text-transform:uppercase; letter-spacing:-0.02em">Last year, for reference</h3>
-          <p style="margin:0 0 26px; font-family:'DM Mono',monospace; font-size:13px; letter-spacing:0.06em; color:#3B5546">36 players · final amounts depend on field size</p>
-          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:0; border-top:2px solid #123C2F; border-left:2px solid #123C2F">
-            <sc-for list="{{ payouts }}" as="row" hint-placeholder-count="6">
-              <div style="border-right:2px solid #123C2F; border-bottom:2px solid #123C2F; padding:18px 20px; display:flex; align-items:baseline; justify-content:space-between; gap:14px; background:#F4EFE2">
-                <span style="font-size:15px; font-weight:600; line-height:1.3">{{ row.label }}</span>
-                <span style="font-family:'Archivo Black',sans-serif; font-size:22px; letter-spacing:-0.02em; color:#123C2F; white-space:nowrap">{{ row.amount }}</span>
+          <h3 style="margin:0 0 8px; font-family:'Archivo Black',Helvetica,sans-serif; font-size:26px; text-transform:uppercase; letter-spacing:-0.02em">This year's payouts</h3>
+          <p style="margin:0 0 26px; font-family:'DM Mono',monospace; font-size:13px; letter-spacing:0.06em; color:#3B5546">Based on the current field · subject to change</p>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:26px">
+            <div>
+              <div style="font-family:'DM Mono',monospace; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#E05A2B; margin-bottom:10px">Places</div>
+              <div style="border-top:2px solid #123C2F; border-left:2px solid #123C2F">
+                <sc-for list="{{ placePayouts }}" as="row" hint-placeholder-count="4">
+                  <div style="border-right:2px solid #123C2F; border-bottom:2px solid #123C2F; padding:18px 20px; display:flex; align-items:baseline; justify-content:space-between; gap:14px; background:#F4EFE2">
+                    <span style="font-size:15px; font-weight:600; line-height:1.3">{{ row.label }}</span>
+                    <span style="font-family:'Archivo Black',sans-serif; font-size:22px; letter-spacing:-0.02em; color:#123C2F; white-space:nowrap">{{ row.amount }}</span>
+                  </div>
+                </sc-for>
               </div>
-            </sc-for>
+            </div>
+            <div>
+              <div style="font-family:'DM Mono',monospace; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#E05A2B; margin-bottom:10px">Closest to pin</div>
+              <div style="border-top:2px solid #123C2F; border-left:2px solid #123C2F">
+                <sc-for list="{{ ctpPayouts }}" as="row" hint-placeholder-count="4">
+                  <div style="border-right:2px solid #123C2F; border-bottom:2px solid #123C2F; padding:18px 20px; display:flex; align-items:baseline; justify-content:space-between; gap:14px; background:#F4EFE2">
+                    <span style="font-size:15px; font-weight:600; line-height:1.3">{{ row.label }}</span>
+                    <span style="font-family:'Archivo Black',sans-serif; font-size:22px; letter-spacing:-0.02em; color:#123C2F; white-space:nowrap">{{ row.amount }}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+            <div>
+              <div style="font-family:'DM Mono',monospace; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#E05A2B; margin-bottom:10px">Other</div>
+              <div style="border-top:2px solid #123C2F; border-left:2px solid #123C2F">
+                <sc-for list="{{ otherPayouts }}" as="row" hint-placeholder-count="3">
+                  <div style="border-right:2px solid #123C2F; border-bottom:2px solid #123C2F; padding:18px 20px; display:flex; align-items:baseline; justify-content:space-between; gap:14px; background:#F4EFE2">
+                    <span style="font-size:15px; font-weight:600; line-height:1.3">{{ row.label }}</span>
+                    <span style="font-family:'Archivo Black',sans-serif; font-size:22px; letter-spacing:-0.02em; color:#123C2F; white-space:nowrap">{{ row.amount }}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
           </div>
         </div>
       </sc-if>
@@ -447,13 +474,22 @@ class Component extends DCLogic {
       teeSlots,
       sheetFailed: this.state.sheetFailed,
       showPayouts: this.props.showPayouts ?? true,
-      payouts: [
-        { label: "1st place", amount: "$80" },
-        { label: "2nd place", amount: "$40" },
-        { label: "Raffle winners (4)", amount: "$50 ea" },
-        { label: "Long drive", amount: "$25" },
-        { label: "Closest to the pin (4)", amount: "$25 ea" },
-        { label: "Into the skins game", amount: "$167" }
+      placePayouts: [
+        { label: "1st place (gross)", amount: "$60" },
+        { label: "1st place (net)", amount: "$60" },
+        { label: "2nd place (gross)", amount: "$20" },
+        { label: "2nd place (net)", amount: "$20" }
+      ],
+      ctpPayouts: [
+        { label: "Front, No. 5", amount: "$20" },
+        { label: "Front, No. 7", amount: "$20" },
+        { label: "Back, No. 14", amount: "$20" },
+        { label: "Back, No. 16", amount: "$20" }
+      ],
+      otherPayouts: [
+        { label: "Raffle tickets (4)", amount: "$50 ea" },
+        { label: "Long drive (No. 15)", amount: "$20" },
+        { label: "Remaining for skins", amount: "$116" }
       ],
       faqs: [
         { q: "I don't have a partner. Can I still play?", a: "Yes. Bring your own if you can, but we can likely find another single for you from the group. Just say so when you sign up." },
