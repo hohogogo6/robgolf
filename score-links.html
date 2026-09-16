@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clam Bake '26 — Per-Team Score Links</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:#F4EFE2;color:#123C2F;font-family:Archivo,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#E05A2B;text-decoration:none}
+a:hover{color:#123C2F}
+::selection{background:#E0B52B;color:#123C2F}
+@media print{
+  body{background:#fff}
+  .noprint{display:none !important}
+  .card{break-inside:avoid;page-break-inside:avoid}
+}
+</style>
+</helmet>
+
+<div style="max-width:1080px; margin:0 auto; padding:40px 24px 80px">
+  <div style="font-family:'DM Mono',monospace; font-size:12px; letter-spacing:0.2em; text-transform:uppercase; color:#E05A2B; margin-bottom:12px">Clam Bake '26 · Internal tool</div>
+  <h1 style="margin:0 0 14px; font-family:'Archivo Black',Helvetica,sans-serif; font-size:clamp(32px,5vw,58px); line-height:0.92; letter-spacing:-0.03em; text-transform:uppercase">Per-team<br>score links</h1>
+  <p style="margin:0 0 32px; max-width:620px; font-size:17px; line-height:1.6; color:#3B5546; text-wrap:pretty">Team names are read live from the tee sheet. Each team gets a link straight into the score entry app with their team already locked in — opening it does the one-time setup automatically, and that device can't be switched to enter scores for another team.</p>
+
+  <div class="noprint" style="display:flex; flex-wrap:wrap; gap:12px; margin-bottom:36px">
+    <button onClick="{{ copyNames }}" style="padding:14px 22px; border:3px solid #123C2F; background:#E0B52B; color:#123C2F; font-family:'Archivo Black',sans-serif; font-size:12px; letter-spacing:0.05em; text-transform:uppercase; cursor:pointer" style-hover="background:#123C2F; color:#E0B52B">{{ copyNamesLabel }}</button>
+    <button onClick="{{ reload }}" style="padding:14px 22px; border:3px solid #123C2F; background:transparent; color:#123C2F; font-family:'Archivo Black',sans-serif; font-size:12px; letter-spacing:0.05em; text-transform:uppercase; cursor:pointer" style-hover="background:#123C2F; color:#E0B52B">Refresh from sheet</button>
+    <button onClick="{{ doPrint }}" style="padding:14px 22px; border:3px solid #123C2F; background:transparent; color:#123C2F; font-family:'Archivo Black',sans-serif; font-size:12px; letter-spacing:0.05em; text-transform:uppercase; cursor:pointer" style-hover="background:#123C2F; color:#E0B52B">Print QR cards</button>
+  </div>
+
+  <sc-if value="{{ warn }}" hint-placeholder-val="{{ false }}">
+    <p style="margin:0 0 28px; display:inline-block; font-family:'DM Mono',monospace; font-size:13px; letter-spacing:0.04em; background:#E0B52B; color:#123C2F; padding:12px 16px; border:3px solid #123C2F">{{ warn }}</p>
+  </sc-if>
+
+  <div ref="{{ gridRef }}" style="display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:20px">
+    <sc-for list="{{ teams }}" as="t" hint-placeholder-count="6">
+      <div class="card" style="border:3px solid #123C2F; background:#FBF8F0; padding:22px; display:flex; flex-direction:column; gap:16px">
+        <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:12px">
+          <div style="min-width:0">
+            <div style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#3B5546">{{ t.slot }}</div>
+            <div style="font-family:'Archivo Black',Helvetica,sans-serif; font-size:21px; line-height:1.1; letter-spacing:-0.02em; margin-top:6px; overflow-wrap:break-word">{{ t.name }}</div>
+          </div>
+          <div data-qrbox="1" style="width:86px; height:86px; flex:0 0 auto; border:2px solid #123C2F; background-color:#F4EFE2; background-position:center; background-size:100% 100%; background-repeat:no-repeat; image-rendering:pixelated"></div>
+        </div>
+        <div style="font-family:'DM Mono',monospace; font-size:11px; line-height:1.45; color:#3B5546; word-break:break-all; background:#F4EFE2; padding:10px; border:1px solid #DCD3BC">{{ t.url }}</div>
+        <div class="noprint" style="display:flex; gap:10px; flex-wrap:wrap">
+          <button onClick="{{ t.copy }}" style="padding:10px 16px; border:3px solid #123C2F; background:#E05A2B; color:#FBF8F0; font-family:'Archivo Black',sans-serif; font-size:11px; letter-spacing:0.05em; text-transform:uppercase; cursor:pointer" style-hover="background:#123C2F; color:#E0B52B">{{ t.copyLabel }}</button>
+          <a href="{{ t.url }}" target="_blank" rel="noopener" style="padding:10px 16px; border:3px solid #123C2F; background:transparent; color:#123C2F; font-family:'Archivo Black',sans-serif; font-size:11px; letter-spacing:0.05em; text-transform:uppercase" style-hover="background:#123C2F; color:#E0B52B">Open</a>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+
+  <div class="noprint" style="margin-top:56px; border-top:3px solid #123C2F; padding-top:32px; max-width:680px">
+    <h2 style="margin:0 0 16px; font-family:'Archivo Black',Helvetica,sans-serif; font-size:24px; text-transform:uppercase; letter-spacing:-0.02em">How the lock works</h2>
+    <p style="margin:0 0 14px; font-size:16px; line-height:1.6; color:#3B5546; text-wrap:pretty">Each card's link opens the score entry app with <code>?team=</code> set. The first time it loads on a phone, that team gets saved and locked to that device — the app hides its "Change team" option from then on, so a team can't accidentally (or deliberately) start entering scores for someone else.</p>
+    <p style="margin:0; font-size:16px; line-height:1.6; color:#3B5546; text-wrap:pretty">Add or rename a team in the sheet, refresh this page, and hand out the new card. Nothing here is hardcoded.</p>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;entryPageUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;score-entry.html&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Form&quot;},&quot;sheetCsvUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://docs.google.com/spreadsheets/d/e/2PACX-1vQ3dsuBO4KVfRMtFiqbqm_-5YykxYuNmkXlE8P6L7KcNIFRiOteD8NM4F6NMqnmrOU0m2p8HG3EQmyc/pub?gid=2114113616&amp;single=true&amp;output=csv&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Form&quot;}}">
+class Component extends DCLogic {
+  state = { rows: [], warn: "", copied: null, copiedNames: false, qrReady: false };
+
+  componentDidMount() {
+    this.load();
+    this.waitQr();
+  }
+
+  waitQr(n) {
+    n = n || 0;
+    if (typeof window.qrcode === "function") { this.setState({ qrReady: true }); return; }
+    if (n > 60) return;
+    setTimeout(() => this.waitQr(n + 1), 100);
+  }
+
+  sheetUrl() {
+    return this.props.sheetCsvUrl || "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ3dsuBO4KVfRMtFiqbqm_-5YykxYuNmkXlE8P6L7KcNIFRiOteD8NM4F6NMqnmrOU0m2p8HG3EQmyc/pub?gid=2114113616&single=true&output=csv";
+  }
+
+  parseCsv(txt) {
+    const rows = []; let row = [], f = "", q = false;
+    for (let i = 0; i < txt.length; i++) {
+      const c = txt[i];
+      if (q) { if (c === '"') { if (txt[i + 1] === '"') { f += '"'; i++; } else q = false; } else f += c; }
+      else if (c === '"') q = true;
+      else if (c === ",") { row.push(f); f = ""; }
+      else if (c === "\n" || c === "\r") { if (c === "\r" && txt[i + 1] === "\n") i++; row.push(f); rows.push(row); row = []; f = ""; }
+      else f += c;
+    }
+    if (f !== "" || row.length) { row.push(f); rows.push(row); }
+    return rows.filter(r => r.some(v => v.trim() !== ""));
+  }
+
+  cell(v) {
+    return (v || "").split(/\r?\n/).map(t => t.trim()).filter(Boolean).join("/");
+  }
+
+  load() {
+    fetch(this.sheetUrl())
+      .then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.text(); })
+      .then(txt => {
+        const out = [];
+        this.parseCsv(txt).slice(1).forEach(c => {
+          const num = (c[0] || "").trim();
+          if (!/^\d+$/.test(num)) return;
+          [2, 3].forEach(ci => {
+            const name = this.cell(c[ci]);
+            if (!name || /^open$/i.test(name)) return;
+            out.push({ slot: "Slot " + ("0" + num).slice(-2) + " · " + (ci === 2 ? "A" : "B"), name });
+          });
+        });
+        if (!out.length) { this.setState({ rows: [], warn: "No teams in the sheet yet — add names to columns C and D." }); return; }
+        this.setState({ rows: out, warn: "" });
+      })
+      .catch(e => this.setState({ warn: "Couldn't read the tee sheet (" + e.message + "). Check that it's still published to the web." }));
+  }
+
+  formUrl(name) {
+    const base = this.props.entryPageUrl || "score-entry.html";
+    return base + "?team=" + encodeURIComponent(name);
+  }
+
+  qrFor(url) {
+    if (!this.state.qrReady) return "";
+    try {
+      const qr = window.qrcode(0, "M");
+      qr.addData(url);
+      qr.make();
+      return qr.createDataURL(4, 2);
+    } catch (e) { return ""; }
+  }
+
+  copyText(text, done) {
+    const fallback = () => {
+      const ta = document.createElement("textarea");
+      ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); } catch (e) {}
+      document.body.removeChild(ta);
+      done();
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, fallback);
+    } else fallback();
+  }
+
+  componentDidUpdate() { this.paintQr(); }
+
+  paintQr() {
+    if (!this.grid) return;
+    const boxes = this.grid.querySelectorAll("[data-qrbox]");
+    this.state.rows.forEach((r, i) => {
+      const el = boxes[i];
+      if (!el) return;
+      const qr = this.qrFor(this.formUrl(r.name));
+      el.style.backgroundImage = qr ? 'url("' + qr + '")' : "none";
+    });
+  }
+
+  renderVals() {
+    const teams = this.state.rows.map((r, i) => {
+      const url = this.formUrl(r.name);
+      return {
+        slot: r.slot,
+        name: r.name,
+        url,
+
+        copyLabel: this.state.copied === i ? "Copied" : "Copy link",
+        copy: () => this.copyText(url, () => {
+          this.setState({ copied: i });
+          setTimeout(() => this.setState(s => (s.copied === i ? { copied: null } : {})), 1600);
+        })
+      };
+    });
+
+    return {
+      teams,
+      gridRef: (el) => { this.grid = el; if (el) this.paintQr(); },
+      warn: this.state.warn,
+      copyNamesLabel: this.state.copiedNames ? "Copied " + this.state.rows.length + " names" : "Copy team names",
+      copyNames: () => this.copyText(this.state.rows.map(r => r.name).join("\n"), () => {
+        this.setState({ copiedNames: true });
+        setTimeout(() => this.setState({ copiedNames: false }), 1800);
+      }),
+      reload: () => { this.setState({ rows: [], warn: "" }); this.load(); },
+      doPrint: () => window.print()
+    };
+  }
+}
+
+</script>
+</body>
+</html>

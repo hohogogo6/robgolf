@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Clam Bake '26 — Score Entry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0}
+body{background:#123C2F;color:#F4EFE2;font-family:Archivo,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+button{font-family:inherit}
+a{color:#E0B52B;text-decoration:none}
+::selection{background:#E0B52B;color:#123C2F}
+</style>
+</helmet>
+
+<template id="__bundler_thumbnail" data-bg-color="#123C2F">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#123C2F"></rect>
+    <circle cx="600" cy="330" r="150" fill="#E0B52B"></circle>
+    <rect x="380" y="540" width="440" height="34" fill="#E05A2B"></rect>
+    <rect x="380" y="600" width="300" height="34" fill="#F4EFE2"></rect>
+  </svg>
+</template>
+
+<div style="max-width:520px; margin:0 auto; padding:20px 16px 40px; min-height:100vh; display:flex; flex-direction:column; gap:18px">
+
+  <div style="display:flex; align-items:center; justify-content:space-between; gap:12px">
+    <div style="min-width:0">
+      <div style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:#E0B52B">Clam Bake '26</div>
+      <div style="font-family:'Archivo Black',Helvetica,sans-serif; font-size:19px; line-height:1.15; letter-spacing:-0.02em; margin-top:5px; overflow-wrap:break-word">{{ teamLabel }}</div>
+    </div>
+    <div style="text-align:right; flex:0 0 auto">
+      <div style="font-family:'Archivo Black',sans-serif; font-size:26px; letter-spacing:-0.02em; color:#E0B52B; line-height:1">{{ totalLabel }}</div>
+      <div style="font-family:'DM Mono',monospace; font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:#8FA898; margin-top:4px">Thru {{ thru }}</div>
+    </div>
+  </div>
+
+  <sc-if value="{{ needsSetup }}" hint-placeholder-val="{{ false }}">
+    <div style="border:3px solid #E0B52B; background:#1B4F3E; padding:20px; display:flex; flex-direction:column; gap:14px">
+      <div style="font-family:'Archivo Black',Helvetica,sans-serif; font-size:17px; text-transform:uppercase; letter-spacing:-0.01em; color:#E0B52B">One-time setup</div>
+      <p style="margin:0; font-size:14px; line-height:1.55; color:#F4EFE2">The form needs <strong>18 separate short-answer questions</strong> named Hole 1 – Hole 18 (a multiple-choice grid won't work — its rows share one field and can't be sent partially). Then paste a pre-filled link with all 18 holes filled in; this page reads the field IDs from it once and remembers them.</p>
+      <textarea onInput="{{ onSetupInput }}" placeholder="https://docs.google.com/forms/d/e/.../viewform?usp=pp_url&amp;entry.123=..." style="width:100%; min-height:96px; padding:12px; border:3px solid #3B5546; background:#123C2F; color:#F4EFE2; font-family:'DM Mono',monospace; font-size:12px; line-height:1.5; resize:vertical"></textarea>
+      <div style="font-family:'DM Mono',monospace; font-size:12px; line-height:1.5; color:#D6E0D8">{{ setupStatus }}</div>
+      <button onClick="{{ saveSetup }}" style="padding:16px; border:3px solid #E0B52B; background:#E0B52B; color:#123C2F; font-family:'Archivo Black',sans-serif; font-size:13px; letter-spacing:0.05em; text-transform:uppercase; cursor:pointer">Save field map</button>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ needsTeam }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex; flex-direction:column; gap:12px">
+      <div style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#8FA898">Pick your team</div>
+      <sc-for list="{{ teamOptions }}" as="t" hint-placeholder-count="6">
+        <button onClick="{{ t.pick }}" style="text-align:left; padding:18px; border:3px solid #3B5546; background:#1B4F3E; color:#F4EFE2; font-family:'DM Mono',monospace; font-size:15px; cursor:pointer" style-hover="border-color:#E0B52B">{{ t.name }}</button>
+      </sc-for>
+      <div style="font-family:'DM Mono',monospace; font-size:12px; color:#8FA898">{{ teamsStatus }}</div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ ready }}" hint-placeholder-val="{{ true }}">
+    <div style="display:flex; flex-direction:column; gap:18px">
+
+      <div style="display:grid; grid-template-columns:repeat(9,1fr); gap:4px">
+        <sc-for list="{{ strip }}" as="h" hint-placeholder-count="18">
+          <button onClick="{{ h.go }}" style="padding:7px 0 6px; border:2px solid {{ h.border }}; background:{{ h.bg }}; color:{{ h.fg }}; cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:2px">
+            <span style="font-family:'DM Mono',monospace; font-size:8px; letter-spacing:0.06em; opacity:0.75">{{ h.hole }}</span>
+            <span style="font-family:'Archivo Black',sans-serif; font-size:14px; line-height:1">{{ h.mark }}</span>
+          </button>
+        </sc-for>
+      </div>
+
+      <div style="border:3px solid #3B5546; background:#1B4F3E; padding:18px; display:flex; flex-direction:column; gap:16px">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:12px">
+          <button onClick="{{ prev }}" style="width:52px; height:52px; border:3px solid #3B5546; background:transparent; color:#E0B52B; font-family:'Archivo Black',sans-serif; font-size:20px; cursor:pointer">‹</button>
+          <div style="text-align:center">
+            <div style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:#8FA898">Hole</div>
+            <div style="font-family:'Archivo Black',Helvetica,sans-serif; font-size:46px; line-height:1; letter-spacing:-0.03em; color:#F4EFE2; margin-top:4px">{{ curHole }}</div>
+          </div>
+          <button onClick="{{ next }}" style="width:52px; height:52px; border:3px solid #3B5546; background:transparent; color:#E0B52B; font-family:'Archivo Black',sans-serif; font-size:20px; cursor:pointer">›</button>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:8px">
+          <sc-for list="{{ pad }}" as="p" hint-placeholder-count="9">
+            <button onClick="{{ p.set }}" style="height:60px; border:3px solid {{ p.border }}; background:{{ p.bg }}; color:{{ p.fg }}; font-family:'Archivo Black',sans-serif; font-size:22px; letter-spacing:-0.02em; cursor:pointer">{{ p.label }}</button>
+          </sc-for>
+        </div>
+
+        <button onClick="{{ clearHole }}" style="padding:13px; border:3px solid #3B5546; background:transparent; color:#8FA898; font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; cursor:pointer">Clear this hole</button>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:10px">
+        <button onClick="{{ send }}" style="padding:20px; border:3px solid {{ sendBorder }}; background:{{ sendBg }}; color:{{ sendFg }}; font-family:'Archivo Black',sans-serif; font-size:15px; letter-spacing:0.04em; text-transform:uppercase; cursor:pointer">{{ sendLabel }}</button>
+        <div style="font-family:'DM Mono',monospace; font-size:11px; line-height:1.5; color:#8FA898; text-align:center">{{ syncStatus }}</div>
+      </div>
+
+      <div style="border-top:2px solid #3B5546; padding-top:16px; display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center">
+        <a href="scoreboard.html" style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase">Live scoreboard →</a>
+        <sc-if value="{{ canSwitch }}" hint-placeholder-val="{{ true }}">
+          <button onClick="{{ switchTeam }}" style="padding:9px 14px; border:2px solid #3B5546; background:transparent; color:#8FA898; font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; cursor:pointer">Change team</button>
+        </sc-if>
+        <sc-if value="{{ locked }}" hint-placeholder-val="{{ false }}">
+          <div style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:#3B5546">Locked to this device</div>
+        </sc-if>
+      </div>
+    </div>
+  </sc-if>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:420,&quot;height&quot;:900},&quot;teamEntryId&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;entry.1290343331&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Form&quot;},&quot;prefillSampleUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://docs.google.com/forms/d/e/1FAIpQLSe6hh3ocGtVtfPZKnwmLcoq1JG3EGZM4btavTbUg3Gkm6H4ww/viewform?usp=pp_url&amp;entry.1290343331=Karim+Daoud/Jim+Bourassa&amp;entry.244475054=2&amp;entry.1161089184=2&amp;entry.509476139=2&amp;entry.305073839=2&amp;entry.1188337355=3&amp;entry.1957769387=3&amp;entry.1827689066=3&amp;entry.1406332619=2&amp;entry.2098481725=2&amp;entry.1985317881=2&amp;entry.138165112=2&amp;entry.1676105676=3&amp;entry.1700519037=3&amp;entry.1257376317=2&amp;entry.1933526432=3&amp;entry.818191728=2&amp;entry.734817481=2&amp;entry.1181314684=2&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Form&quot;},&quot;teeSheetCsvUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://docs.google.com/spreadsheets/d/e/2PACX-1vQ3dsuBO4KVfRMtFiqbqm_-5YykxYuNmkXlE8P6L7KcNIFRiOteD8NM4F6NMqnmrOU0m2p8HG3EQmyc/pub?gid=2114113616&amp;single=true&amp;output=csv&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Form&quot;}}">
+const LS = {
+  team: "clambake26.team",
+  scores: "clambake26.scores",
+  map: "clambake26.entrymap",
+  sent: "clambake26.sentAt",
+  lastSent: "clambake26.lastSentScores",
+  locked: "clambake26.locked"
+};
+
+class Component extends DCLogic {
+  state = {
+    team: "", scores: {}, cur: 1, locked: false,
+    map: null, mapDraft: "", mapMsg: "",
+    teamOptions: [], teamsStatus: "Loading teams from the tee sheet…",
+    sending: false, sentAt: null, dirty: false, err: ""
+  };
+
+  componentDidMount() {
+    let team = "", scores = {}, map = null, sentAt = null, lastSent = {}, locked = false;
+    try {
+      const q = new URLSearchParams(location.search);
+      const qt = q.get("team");
+      locked = localStorage.getItem(LS.locked) === "1";
+      team = qt || localStorage.getItem(LS.team) || "";
+      if (qt) {
+        localStorage.setItem(LS.team, qt);
+        localStorage.setItem(LS.locked, "1");
+        locked = true;
+      }
+      scores = JSON.parse(localStorage.getItem(LS.scores) || "{}");
+      const m = localStorage.getItem(LS.map);
+      map = m ? JSON.parse(m) : null;
+      sentAt = localStorage.getItem(LS.sent);
+      lastSent = JSON.parse(localStorage.getItem(LS.lastSent) || "{}");
+    } catch (e) {}
+    if (this.props.prefillSampleUrl && (!map || map.src !== this.props.prefillSampleUrl)) {
+      const fresh = this.deriveMap(this.props.prefillSampleUrl);
+      if (fresh) {
+        map = fresh;
+        try { localStorage.setItem(LS.map, JSON.stringify(map)); } catch (e) {}
+      }
+    }
+    const holes = Object.keys(scores).map(Number).sort((a, b) => a - b);
+    this.setState({
+      team, scores, map, sentAt, lastSent, locked,
+      cur: holes.length ? Math.min(18, holes[holes.length - 1] + 1) : 1
+    });
+    if (!team) this.loadTeams();
+  }
+
+  persist(patch) {
+    this.setState(patch);
+    try {
+      if (patch.scores) localStorage.setItem(LS.scores, JSON.stringify(patch.scores));
+      if (patch.team) localStorage.setItem(LS.team, patch.team);
+      if (patch.map) localStorage.setItem(LS.map, JSON.stringify(patch.map));
+      if (patch.sentAt) localStorage.setItem(LS.sent, patch.sentAt);
+      if (patch.lastSent) localStorage.setItem(LS.lastSent, JSON.stringify(patch.lastSent));
+    } catch (e) {}
+  }
+
+  deriveMap(url) {
+    try {
+      const u = new URL(url.trim());
+      const action = u.origin + u.pathname.replace(/\/viewform.*$/, "/formResponse");
+      const teamEntry = this.props.teamEntryId || "entry.1290343331";
+      const holes = [];
+      u.searchParams.forEach((v, k) => {
+        if (!/^entry\./.test(k) || k === teamEntry) return;
+        if (holes.indexOf(k) === -1) holes.push(k);
+      });
+      if (holes.length < 18) return null;
+      return { action, teamEntry, holes: holes.slice(0, 18), src: url };
+    } catch (e) { return null; }
+  }
+
+  parseCsv(txt) {
+    const rows = []; let row = [], f = "", q = false;
+    for (let i = 0; i < txt.length; i++) {
+      const c = txt[i];
+      if (q) { if (c === '"') { if (txt[i + 1] === '"') { f += '"'; i++; } else q = false; } else f += c; }
+      else if (c === '"') q = true;
+      else if (c === ",") { row.push(f); f = ""; }
+      else if (c === "\n" || c === "\r") { if (c === "\r" && txt[i + 1] === "\n") i++; row.push(f); rows.push(row); row = []; f = ""; }
+      else f += c;
+    }
+    if (f !== "" || row.length) { row.push(f); rows.push(row); }
+    return rows.filter(r => r.some(v => v.trim() !== ""));
+  }
+
+  loadTeams() {
+    const url = this.props.teeSheetCsvUrl || "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ3dsuBO4KVfRMtFiqbqm_-5YykxYuNmkXlE8P6L7KcNIFRiOteD8NM4F6NMqnmrOU0m2p8HG3EQmyc/pub?gid=2114113616&single=true&output=csv";
+    fetch(url + "&_=" + Date.now(), { cache: "no-store" })
+      .then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.text(); })
+      .then(txt => {
+        const out = [];
+        this.parseCsv(txt).slice(1).forEach(c => {
+          if (!/^\d+$/.test((c[0] || "").trim())) return;
+          [2, 3].forEach(ci => {
+            const n = (c[ci] || "").split(/\r?\n/).map(t => t.trim()).filter(Boolean).join("/");
+            if (n && !/^open$/i.test(n) && out.indexOf(n) === -1) out.push(n);
+          });
+        });
+        this.setState({ teamOptions: out, teamsStatus: out.length ? "" : "No teams in the tee sheet yet." });
+      })
+      .catch(e => this.setState({ teamsStatus: "Couldn't load teams (" + e.message + ")." }));
+  }
+
+  send() {
+    const { map, team, scores } = this.state;
+    if (!map || !team || this.state.sending) return;
+    const holes = Object.keys(scores).map(Number).sort((a, b) => a - b);
+    if (!holes.length) return;
+    const fd = new FormData();
+    fd.append(map.teamEntry, team);
+    holes.forEach(h => fd.append(map.holes[h - 1], String(scores[h])));
+    this.setState({ sending: true, err: "" });
+    fetch(map.action, { method: "POST", mode: "no-cors", body: fd })
+      .then(() => {
+        const at = new Date().toISOString();
+        this.persist({ sentAt: at, lastSent: Object.assign({}, scores) });
+        this.setState({ sending: false, dirty: false });
+      })
+      .catch(() => this.setState({ sending: false, err: "Send failed — check signal and try again." }));
+  }
+
+  renderVals() {
+    const { scores, cur, team, map } = this.state;
+    const holes = Object.keys(scores).map(Number);
+    const total = holes.reduce((s, h) => s + scores[h], 0);
+    const scoresChangedSinceSend = JSON.stringify(scores) !== JSON.stringify(this.state.lastSent || {});
+    const needsSetup = !map;
+    const needsTeam = !!map && !team;
+    const ready = !!map && !!team;
+
+    const strip = [];
+    for (let h = 1; h <= 18; h++) {
+      const has = scores[h] != null;
+      const isCur = h === cur;
+      strip.push({
+        hole: h,
+        mark: has ? scores[h] : "·",
+        bg: isCur ? "#E0B52B" : has ? "#1B4F3E" : "transparent",
+        fg: isCur ? "#123C2F" : has ? "#F4EFE2" : "#8FA898",
+        border: isCur ? "#E0B52B" : "#3B5546",
+        go: () => this.setState({ cur: h })
+      });
+    }
+
+    const pad = [];
+    for (let n = 1; n <= 9; n++) {
+      const on = scores[cur] === n;
+      pad.push({
+        label: n === 9 ? "9+" : String(n),
+        on,
+        bg: on ? "#E05A2B" : "transparent",
+        fg: on ? "#FBF8F0" : "#F4EFE2",
+        border: on ? "#E05A2B" : "#3B5546",
+        set: () => {
+          const next = Object.assign({}, this.state.scores);
+          next[this.state.cur] = n;
+          this.persist({ scores: next });
+          this.setState({ dirty: true, cur: Math.min(18, this.state.cur + 1) });
+        }
+      });
+    }
+
+    const unsent = scoresChangedSinceSend;
+    const sentLabel = this.state.sentAt
+      ? "Last sent " + new Date(this.state.sentAt).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })
+      : "Nothing sent yet";
+
+    return {
+      teamLabel: team || "No team selected",
+      totalLabel: holes.length ? total : "—",
+      thru: holes.length,
+      needsSetup, needsTeam, ready,
+
+      setupStatus: this.state.mapMsg || "Form → ⋮ → Get pre-filled link, fill every hole, then copy the link.",
+      onSetupInput: (e) => this.setState({ mapDraft: e.target.value, mapMsg: "" }),
+      saveSetup: () => {
+        const m = this.deriveMap(this.state.mapDraft);
+        if (!m) { this.setState({ mapMsg: "Found fewer than 18 hole fields. If your form uses a multiple-choice grid, replace it with 18 short-answer questions (Hole 1 – Hole 18) — a grid's rows share one field ID and can't be submitted partially." }); return; }
+        this.persist({ map: m });
+        this.setState({ mapMsg: "" });
+        if (!this.state.team) this.loadTeams();
+      },
+
+      teamOptions: this.state.teamOptions.map(n => ({ name: n, pick: () => this.persist({ team: n }) })),
+      teamsStatus: this.state.teamsStatus,
+
+      strip, pad,
+      curHole: cur,
+      prev: () => this.setState({ cur: Math.max(1, cur - 1) }),
+      next: () => this.setState({ cur: Math.min(18, cur + 1) }),
+      clearHole: () => {
+        const next = Object.assign({}, this.state.scores);
+        delete next[this.state.cur];
+        this.persist({ scores: next });
+        this.setState({ dirty: true });
+      },
+
+      sendLabel: this.state.sending
+        ? "Sending…"
+        : !holes.length ? "No scores yet"
+        : unsent ? "Send " + holes.length + " holes"
+        : "All sent",
+      sendBg: (holes.length && unsent) ? "#E0B52B" : "transparent",
+      sendFg: (holes.length && unsent) ? "#123C2F" : "#8FA898",
+      sendBorder: holes.length ? "#E0B52B" : "#3B5546",
+      syncStatus: this.state.err || (!holes.length ? "Enter a score above to send" : unsent ? "Unsent changes · " + sentLabel : sentLabel),
+      send: () => { if (holes.length && unsent) this.send(); },
+      canSwitch: !this.state.locked,
+      locked: this.state.locked,
+      switchTeam: () => {
+        if (this.state.locked) return;
+        try { localStorage.removeItem(LS.team); } catch (e) {}
+        this.setState({ team: "" }); this.loadTeams();
+      }
+    };
+  }
+}
+
+</script>
+</body>
+</html>

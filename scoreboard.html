@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clam Bake '26 — Live Scoreboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:#123C2F;color:#F4EFE2;font-family:Archivo,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#E0B52B;text-decoration:none}
+a:hover{color:#FBF8F0}
+::selection{background:#E0B52B;color:#123C2F}
+</style>
+</helmet>
+
+<template id="__bundler_thumbnail" data-bg-color="#123C2F">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#123C2F"></rect>
+    <rect x="380" y="300" width="440" height="60" fill="#E0B52B"></rect>
+    <rect x="380" y="400" width="300" height="60" fill="#E05A2B"></rect>
+    <rect x="380" y="500" width="360" height="60" fill="#F4EFE2"></rect>
+  </svg>
+</template>
+
+<div style="max-width:1080px; margin:0 auto; padding:34px 20px 80px">
+  <div style="display:flex; flex-wrap:wrap; gap:18px; align-items:flex-end; justify-content:space-between; margin-bottom:30px">
+    <div>
+      <div style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:#E0B52B; margin-bottom:10px">Clam Bake '26 · Live</div>
+      <h1 style="margin:0; font-family:'Archivo Black',Helvetica,sans-serif; font-size:clamp(34px,7vw,64px); line-height:0.9; letter-spacing:-0.035em; text-transform:uppercase">Scoreboard</h1>
+    </div>
+    <div style="display:flex; flex-direction:column; align-items:flex-end; gap:8px">
+      <div style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#8FA898">{{ updatedLabel }}</div>
+      <button onClick="{{ reload }}" style="padding:11px 18px; border:3px solid #E0B52B; background:transparent; color:#E0B52B; font-family:'Archivo Black',sans-serif; font-size:11px; letter-spacing:0.05em; text-transform:uppercase; cursor:pointer" style-hover="background:#E0B52B; color:#123C2F">Refresh now</button>
+    </div>
+  </div>
+
+  <sc-if value="{{ warn }}" hint-placeholder-val="{{ false }}">
+    <p style="margin:0 0 26px; font-family:'DM Mono',monospace; font-size:13px; line-height:1.5; background:#E0B52B; color:#123C2F; padding:13px 16px; border:3px solid #E0B52B">{{ warn }}</p>
+  </sc-if>
+  <sc-if value="{{ conflictWarn }}" hint-placeholder-val="{{ false }}">
+    <p style="margin:0 0 26px; font-family:'DM Mono',monospace; font-size:13px; line-height:1.5; background:#E05A2B; color:#FBF8F0; padding:13px 16px; border:3px solid #E05A2B">{{ conflictWarn }}</p>
+  </sc-if>
+
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:0; border-top:2px solid #3B5546; border-left:2px solid #3B5546; margin-bottom:44px">
+    <div style="border-right:2px solid #3B5546; border-bottom:2px solid #3B5546; padding:16px 18px">
+      <div style="font-family:'Archivo Black',sans-serif; font-size:30px; letter-spacing:-0.03em; color:#E0B52B">{{ statTeams }}</div>
+      <div style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:#8FA898; margin-top:5px">Teams reporting</div>
+    </div>
+    <div style="border-right:2px solid #3B5546; border-bottom:2px solid #3B5546; padding:16px 18px">
+      <div style="font-family:'Archivo Black',sans-serif; font-size:30px; letter-spacing:-0.03em; color:#E0B52B">{{ statHoles }}</div>
+      <div style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:#8FA898; margin-top:5px">Scores logged</div>
+    </div>
+    <div style="border-right:2px solid #3B5546; border-bottom:2px solid #3B5546; padding:16px 18px">
+      <div style="font-family:'Archivo Black',sans-serif; font-size:30px; letter-spacing:-0.03em; color:#E0B52B">{{ statSkins }}</div>
+      <div style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:#8FA898; margin-top:5px">Skins claimed</div>
+    </div>
+    <div style="border-right:2px solid #3B5546; border-bottom:2px solid #3B5546; padding:16px 18px">
+      <div style="font-family:'Archivo Black',sans-serif; font-size:30px; letter-spacing:-0.03em; color:#E0B52B">{{ statCarry }}</div>
+      <div style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:#8FA898; margin-top:5px">Carried over</div>
+    </div>
+  </div>
+
+  <div style="display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:14px; margin-bottom:6px">
+    <div>
+      <h2 style="margin:0 0 6px; font-family:'Archivo Black',Helvetica,sans-serif; font-size:30px; text-transform:uppercase; letter-spacing:-0.025em">Leaderboard</h2>
+      <p style="margin:0; font-family:'DM Mono',monospace; font-size:12px; letter-spacing:0.06em; color:#8FA898">Ranked on net. Teams thru fewer holes are provisional.</p>
+    </div>
+    <button onClick="{{ toggleFinishedOnly }}" style="padding:10px 16px; border:2px solid {{ finishedOnlyBorder }}; background:{{ finishedOnlyBg }}; color:{{ finishedOnlyFg }}; font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer">{{ finishedOnlyLabel }}</button>
+  </div>
+  <div style="height:22px"></div>
+
+  <div style="border-top:2px solid #3B5546">
+    <div style="display:grid; grid-template-columns:44px minmax(0,1fr) 64px 64px 64px; gap:12px; padding:11px 14px; border-bottom:2px solid #3B5546; font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:#8FA898">
+      <div>Pos</div>
+      <button onClick="{{ sortByName }}" style="text-align:left; background:none; border:none; padding:0; cursor:pointer; color:{{ nameColor }}; font-family:inherit; font-size:inherit; letter-spacing:inherit; text-transform:inherit">Team{{ nameArrow }}</button>
+      <button onClick="{{ sortByThru }}" style="text-align:right; background:none; border:none; padding:0; cursor:pointer; color:{{ thruColor }}; font-family:inherit; font-size:inherit; letter-spacing:inherit; text-transform:inherit">Thru{{ thruArrow }}</button>
+      <button onClick="{{ sortByGross }}" style="text-align:right; background:none; border:none; padding:0; cursor:pointer; color:{{ grossColor }}; font-family:inherit; font-size:inherit; letter-spacing:inherit; text-transform:inherit">Gross{{ grossArrow }}</button>
+      <button onClick="{{ sortByNet }}" style="text-align:right; background:none; border:none; padding:0; cursor:pointer; color:{{ netColor }}; font-family:inherit; font-size:inherit; letter-spacing:inherit; text-transform:inherit">Net{{ netArrow }}</button>
+    </div>
+    <sc-for list="{{ board }}" as="row" hint-placeholder-count="8">
+      <div style="display:grid; grid-template-columns:44px minmax(0,1fr) 64px 64px 64px; gap:12px; padding:15px 14px; border-bottom:2px solid #3B5546; align-items:center">
+        <div style="font-family:'Archivo Black',sans-serif; font-size:19px; letter-spacing:-0.02em; color:{{ row.posColor }}">{{ row.pos }}</div>
+        <div style="min-width:0">
+          <div style="font-family:'DM Mono',monospace; font-size:14px; color:#F4EFE2; overflow-wrap:break-word">{{ row.name }}</div>
+          <div style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:#8FA898; margin-top:4px">{{ row.hcpLabel }}</div>
+          <sc-if value="{{ row.badgeLabel }}" hint-placeholder-val="{{ false }}">
+            <div style="display:inline-block; margin-top:6px; font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:{{ row.badgeColor }}; background:{{ row.badgeBg }}; border:1px solid {{ row.badgeColor }}; padding:3px 8px">{{ row.badgeLabel }}</div>
+          </sc-if>
+        </div>
+        <div style="text-align:right; font-family:'DM Mono',monospace; font-size:14px; color:#8FA898">{{ row.thru }}</div>
+        <div style="text-align:right; font-family:'DM Mono',monospace; font-size:14px; color:#F4EFE2">{{ row.gross }}</div>
+        <div style="text-align:right; font-family:'Archivo Black',sans-serif; font-size:19px; letter-spacing:-0.02em; color:#E0B52B">{{ row.net }}</div>
+      </div>
+    </sc-for>
+  </div>
+
+  <h2 style="margin:56px 0 6px; font-family:'Archivo Black',Helvetica,sans-serif; font-size:30px; text-transform:uppercase; letter-spacing:-0.025em">Skins</h2>
+  <p style="margin:0 0 22px; font-family:'DM Mono',monospace; font-size:12px; letter-spacing:0.06em; color:#8FA898">Lowest outright score takes the hole. Ties carry.</p>
+
+  <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(148px,1fr)); gap:0; border-top:2px solid #3B5546; border-left:2px solid #3B5546">
+    <sc-for list="{{ skins }}" as="s" hint-placeholder-count="18">
+      <div style="border-right:2px solid #3B5546; border-bottom:2px solid #3B5546; padding:14px 16px; display:flex; flex-direction:column; gap:8px; min-height:104px; background:{{ s.bg }}">
+        <div style="display:flex; align-items:baseline; justify-content:space-between; gap:8px">
+          <span style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:{{ s.dim }}">Hole {{ s.hole }}</span>
+          <span style="font-family:'Archivo Black',sans-serif; font-size:20px; letter-spacing:-0.02em; color:{{ s.scoreColor }}">{{ s.score }}</span>
+        </div>
+        <div style="font-family:'DM Mono',monospace; font-size:12px; line-height:1.35; color:{{ s.fg }}; overflow-wrap:break-word">{{ s.label }}</div>
+      </div>
+    </sc-for>
+  </div>
+
+  <p style="margin:44px 0 0; font-family:'DM Mono',monospace; font-size:12px; line-height:1.6; color:#8FA898; max-width:620px; text-wrap:pretty">Refreshes automatically every 30 seconds. Resubmit the form to add holes or correct a score — the most recent entry for a hole always wins.</p>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1080},&quot;responsesCsvUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://docs.google.com/spreadsheets/d/e/2PACX-1vQoBK_sJCd2u008B5pDvLchd7iPQ30POrdFgSd0CXfFZO0gEWLOIlg478A6Cc6MDKj6fC9wPEs5aX5m/pub?gid=1019876684&amp;single=true&amp;output=csv&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Data&quot;},&quot;teeSheetCsvUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://docs.google.com/spreadsheets/d/e/2PACX-1vQ3dsuBO4KVfRMtFiqbqm_-5YykxYuNmkXlE8P6L7KcNIFRiOteD8NM4F6NMqnmrOU0m2p8HG3EQmyc/pub?gid=2114113616&amp;single=true&amp;output=csv&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Data&quot;}}">
+class Component extends DCLogic {
+  state = { scores: {}, hcps: {}, order: [], updated: null, warn: "", entries: 0, sortBy: "net", sortDir: "asc", finishedOnly: false };
+
+  setSort(col) {
+    const defaultDir = { name: "asc", thru: "desc", gross: "asc", net: "asc" };
+    this.setState(s => s.sortBy === col
+      ? { sortDir: s.sortDir === "asc" ? "desc" : "asc" }
+      : { sortBy: col, sortDir: defaultDir[col] });
+  }
+
+  componentDidMount() {
+    this.loadAll();
+    this.timer = setInterval(() => this.loadAll(), 30000);
+  }
+  componentWillUnmount() { clearInterval(this.timer); }
+
+  responsesUrl() {
+    return this.props.responsesCsvUrl || "https://docs.google.com/spreadsheets/d/e/2PACX-1vT-kcrszVYnQy2hBPLXdDzso4zmnIkXNKTR4OeFR8CG3mfR0-hDvbces_eX_f_DnyMELf1G99b_Nl0h/pub?gid=1649611756&single=true&output=csv";
+  }
+  teeUrl() {
+    return this.props.teeSheetCsvUrl || "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ3dsuBO4KVfRMtFiqbqm_-5YykxYuNmkXlE8P6L7KcNIFRiOteD8NM4F6NMqnmrOU0m2p8HG3EQmyc/pub?gid=2114113616&single=true&output=csv";
+  }
+
+  parseCsv(txt) {
+    const rows = []; let row = [], f = "", q = false;
+    for (let i = 0; i < txt.length; i++) {
+      const c = txt[i];
+      if (q) { if (c === '"') { if (txt[i + 1] === '"') { f += '"'; i++; } else q = false; } else f += c; }
+      else if (c === '"') q = true;
+      else if (c === ",") { row.push(f); f = ""; }
+      else if (c === "\n" || c === "\r") { if (c === "\r" && txt[i + 1] === "\n") i++; row.push(f); rows.push(row); row = []; f = ""; }
+      else f += c;
+    }
+    if (f !== "" || row.length) { row.push(f); rows.push(row); }
+    return rows.filter(r => r.some(v => v.trim() !== ""));
+  }
+
+  teamKey(s) { return (s || "").trim().toLowerCase().replace(/\s*\/\s*/g, "/").replace(/\s+/g, " "); }
+
+  loadAll() {
+    const bust = (u) => u + (u.indexOf("?") > -1 ? "&" : "?") + "_=" + Date.now();
+    const opts = { cache: "no-store" };
+    Promise.all([
+      fetch(bust(this.teeUrl()), opts).then(r => r.ok ? r.text() : "").catch(() => ""),
+      fetch(bust(this.responsesUrl()), opts).then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.text(); })
+    ]).then(([teeTxt, respTxt]) => {
+      const hcps = {}, order = [];
+      if (teeTxt) {
+        this.parseCsv(teeTxt).slice(1).forEach(c => {
+          if (!/^\d+$/.test((c[0] || "").trim())) return;
+          [[2, 4], [3, 5]].forEach(([ni, hi]) => {
+            const name = (c[ni] || "").split(/\r?\n/).map(t => t.trim()).filter(Boolean).join("/");
+            if (!name || /^open$/i.test(name)) return;
+            order.push(name);
+            const h = (c[hi] || "").trim();
+            hcps[this.teamKey(name)] = { name, hcp: /^[\d.]+$/.test(h) ? parseFloat(h) : 0 };
+          });
+        });
+      }
+      const parsed = this.parseCsv(respTxt);
+      if (parsed.length < 2) { this.setState({ warn: "No score submissions yet.", scores: {}, hcps, order, updated: new Date(), entries: 0 }); return; }
+
+      const head = parsed[0].map(h => (h || "").trim());
+      const teamCol = head.findIndex(h => /team/i.test(h));
+      const holeCols = [];
+      head.forEach((h, i) => {
+        const m = h.match(/hole\s*\[?\s*(\d{1,2})/i) || h.match(/\[\s*hole\s*(\d{1,2})/i);
+        if (m) { const n = parseInt(m[1], 10); if (n >= 1 && n <= 18) holeCols.push({ i, n }); }
+      });
+      if (teamCol < 0 || !holeCols.length) {
+        this.setState({ warn: "Couldn't find a Team column and Hole 1–18 columns in the responses sheet. Check the form field names.", updated: new Date() });
+        return;
+      }
+
+      const scores = {}; let entries = 0;
+      parsed.slice(1).forEach(c => {
+        const raw = (c[teamCol] || "").trim();
+        if (!raw) return;
+        const k = this.teamKey(raw);
+        if (!scores[k]) scores[k] = { name: raw, holes: {} };
+        holeCols.forEach(({ i, n }) => {
+          const v = (c[i] || "").trim();
+          if (!v) return;
+          if (/^x$/i.test(v)) { delete scores[k].holes[n]; entries++; return; }
+          const num = parseInt(v.replace(/\+$/, ""), 10);
+          if (!isNaN(num) && num > 0 && num < 20) { scores[k].holes[n] = num; entries++; }
+        });
+      });
+
+      this.setState({ scores, hcps, order, updated: new Date(), entries, warn: "" });
+    }).catch(e => this.setState({ warn: "Couldn't read the responses sheet (" + e.message + "). Publish that tab to the web as CSV, or share the sheet so anyone with the link can view.", updated: new Date() }));
+  }
+
+  renderVals() {
+    const { scores, hcps } = this.state;
+    // Hole difficulty rank at Herndon Centennial, 1 = hardest.
+    const HOLE_HCP = {1:1,2:9,3:7,4:13,5:15,6:5,7:11,8:3,9:17,10:12,11:2,12:8,13:6,14:18,15:14,16:16,17:10,18:4};
+    const hcpOrder = Object.keys(HOLE_HCP).map(Number).sort((a, b) => HOLE_HCP[a] - HOLE_HCP[b]);
+    const tiebreak = (a, b) => {
+      for (const h of hcpOrder) {
+        const av = a.holes[h], bv = b.holes[h];
+        if (av == null || bv == null) continue;
+        if (av !== bv) return av - bv;
+      }
+      return a.name.localeCompare(b.name);
+    };
+    const keys = Object.keys(scores);
+
+    const teams = keys.map(k => {
+      const t = scores[k];
+      const holes = Object.keys(t.holes).map(Number).sort((a, b) => a - b);
+      const gross = holes.reduce((s, h) => s + t.holes[h], 0);
+      const meta = hcps[k];
+      const hcp = meta ? meta.hcp : 0;
+      const applied = holes.length ? Math.round(hcp * (holes.length / 18) * 10) / 10 : 0;
+      return {
+        key: k,
+        name: (meta && meta.name) || t.name,
+        thru: holes.length,
+        gross,
+        net: Math.round((gross - applied) * 10) / 10,
+        hcp,
+        holes: t.holes
+      };
+    }).filter(t => t.thru > 0).filter(t => !this.state.finishedOnly || t.thru >= 18);
+
+    const { sortBy, sortDir } = this.state;
+    const dir = sortDir === "desc" ? -1 : 1;
+    const cmp = {
+      name: (a, b) => a.name.localeCompare(b.name),
+      thru: (a, b) => a.thru - b.thru,
+      gross: (a, b) => a.gross - b.gross,
+      net: (a, b) => a.net - b.net
+    }[sortBy] || ((a, b) => a.net - b.net);
+    teams.sort((a, b) => dir * cmp(a, b) || (b.thru - a.thru) || tiebreak(a, b));
+
+    const arrow = (col) => sortBy === col ? (sortDir === "asc" ? " \u2191" : " \u2193") : "";
+    const color = (col) => sortBy === col ? "#E0B52B" : "#8FA898";
+
+    // 1st/2nd place winners — separate net and gross rankings, both tiebroken on the hardest handicap hole first.
+    const finished = teams.filter(t => t.thru >= 18);
+    const netTop = finished.slice().sort((a, b) => a.net - b.net || tiebreak(a, b)).slice(0, 2);
+    const grossTop = finished.slice().sort((a, b) => a.gross - b.gross || tiebreak(a, b)).slice(0, 2);
+    const badgesByKey = {};
+    netTop.forEach((t, i) => (badgesByKey[t.key] = badgesByKey[t.key] || []).push((i === 0 ? "1st" : "2nd") + " Net"));
+    grossTop.forEach((t, i) => (badgesByKey[t.key] = badgesByKey[t.key] || []).push((i === 0 ? "1st" : "2nd") + " Gross"));
+    const conflictNames = Object.keys(badgesByKey).filter(k => (badgesByKey[k] || []).length > 1)
+      .map(k => (finished.find(t => t.key === k) || {}).name).filter(Boolean);
+    const conflictWarn = conflictNames.length
+      ? conflictNames.map(n => n + " is currently up for both Net and Gross").join("; ") + " — a team can only win one, so pick manually and the runner-up takes the other."
+      : "";
+
+    const board = teams.map((t, i) => ({
+      pos: i + 1,
+      posColor: i === 0 ? "#E0B52B" : "#8FA898",
+      name: t.name,
+      hcpLabel: t.hcp ? "HCP " + t.hcp + " · " + (Math.round(t.hcp * (t.thru / 18) * 10) / 10) + " applied" : "Scratch",
+      thru: t.thru,
+      gross: t.gross,
+      net: t.net,
+      badgeLabel: (badgesByKey[t.key] || []).join(" · "),
+      badgeColor: (badgesByKey[t.key] || []).length > 1 ? "#E05A2B" : "#E0B52B",
+      badgeBg: (badgesByKey[t.key] || []).length > 1 ? "rgba(224,90,43,0.15)" : "transparent"
+    }));
+
+    let claimed = 0, carried = 0;
+    const skins = [];
+    for (let h = 1; h <= 18; h++) {
+      const played = teams.filter(t => t.holes[h] != null);
+      if (!played.length) {
+        skins.push({ hole: h, score: "—", label: "No scores in", bg: "transparent", fg: "#8FA898", dim: "#8FA898", scoreColor: "#8FA898" });
+        continue;
+      }
+      const best = Math.min.apply(null, played.map(t => t.holes[h]));
+      const winners = played.filter(t => t.holes[h] === best);
+      const partial = played.length < teams.length;
+      if (winners.length === 1) {
+        claimed++;
+        skins.push({
+          hole: h, score: best,
+          label: winners[0].name + (partial ? " · provisional" : ""),
+          bg: partial ? "transparent" : "#1B4F3E",
+          fg: "#F4EFE2", dim: "#8FA898", scoreColor: "#E0B52B"
+        });
+      } else {
+        carried++;
+        skins.push({
+          hole: h, score: best,
+          label: "Carried · " + winners.length + " tied" + (partial ? " so far" : ""),
+          bg: "transparent", fg: "#E05A2B", dim: "#8FA898", scoreColor: "#E05A2B"
+        });
+      }
+    }
+
+    return {
+      board,
+      skins,
+      sortByName: () => this.setSort("name"),
+      sortByThru: () => this.setSort("thru"),
+      sortByGross: () => this.setSort("gross"),
+      sortByNet: () => this.setSort("net"),
+      nameArrow: arrow("name"), thruArrow: arrow("thru"), grossArrow: arrow("gross"), netArrow: arrow("net"),
+      nameColor: color("name"), thruColor: color("thru"), grossColor: color("gross"), netColor: color("net"),
+      toggleFinishedOnly: () => this.setState(s => ({ finishedOnly: !s.finishedOnly })),
+      finishedOnlyLabel: this.state.finishedOnly ? "Showing thru 18 only" : "Show thru 18 only",
+      finishedOnlyBg: this.state.finishedOnly ? "#E0B52B" : "transparent",
+      finishedOnlyFg: this.state.finishedOnly ? "#123C2F" : "#8FA898",
+      finishedOnlyBorder: this.state.finishedOnly ? "#E0B52B" : "#3B5546",
+      conflictWarn,
+      warn: this.state.warn,
+      statTeams: teams.length,
+      statHoles: this.state.entries,
+      statSkins: claimed,
+      statCarry: carried,
+      updatedLabel: this.state.updated
+        ? "Updated " + this.state.updated.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })
+        : "Loading…",
+      reload: () => this.loadAll()
+    };
+  }
+}
+
+</script>
+</body>
+</html>

@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>2026 Centennial Clam Bake &amp; Golf Championship</title>
-<meta name="description" content="Sat, Oct 3 2026 · Herndon Centennial · 2-person scramble, 11:33 AM first tee, BBQ party after.">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -16,9 +19,17 @@
   a:hover { color: #123C2F; }
   ::selection { background: #E0B52B; color: #123C2F; }
 </style>
-<style>.hv1:hover{background:#123C2F !important;color:#E0B52B !important}.hv2:hover{background:#F4EFE2 !important}.hv3:hover{background:#F4EFE2 !important;color:#123C2F !important}.hv4:hover{background:#123C2F !important;color:#E0B52B !important}.hv5:hover{background:#F4EFE2 !important}.hv6:hover{background:#F4EFE2 !important;color:#123C2F !important}.hvpay:hover{background:#E05A2B !important;color:#FBF8F0 !important}</style>
-</head>
-<body>
+</helmet>
+
+<template id="__bundler_thumbnail" data-bg-color="#123C2F">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#123C2F"></rect>
+    <circle cx="600" cy="330" r="150" fill="#E05A2B"></circle>
+    <rect x="380" y="540" width="440" height="34" fill="#E0B52B"></rect>
+    <rect x="380" y="600" width="300" height="34" fill="#F4EFE2"></rect>
+  </svg>
+</template>
+
 <div style="width:100%; overflow-x:hidden">
 
   <nav style="position:sticky; top:0; z-index:50; display:flex; align-items:center; justify-content:space-between; gap:24px; padding:14px 28px; background:#F4EFE2; border-bottom:3px solid #123C2F">
@@ -33,8 +44,9 @@
       <a href="#prizes" style="font-family:'DM Mono',monospace; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:#123C2F">Prizes</a>
       <a href="#party" style="font-family:'DM Mono',monospace; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:#123C2F">Party</a>
       <a href="#faq" style="font-family:'DM Mono',monospace; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:#123C2F">FAQ</a>
+      <a href="scoreboard.html" style="font-family:'DM Mono',monospace; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:#123C2F">Scoreboard</a>
       <a href="#pay" style="font-family:'DM Mono',monospace; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:#E05A2B; font-weight:500">Pay</a>
-      <a href="#signup" style="padding:9px 18px; background:#E05A2B; color:#FBF8F0; font-family:'Archivo Black',Helvetica,sans-serif; font-size:12px; letter-spacing:0.04em; text-transform:uppercase; border:2px solid #123C2F" class="hv1">I'm In</a>
+      <a href="#signup" style="padding:9px 18px; background:#E05A2B; color:#FBF8F0; font-family:'Archivo Black',Helvetica,sans-serif; font-size:12px; letter-spacing:0.04em; text-transform:uppercase; border:2px solid #123C2F" style-hover="background:#123C2F; color:#E0B52B">I'm In</a>
     </div>
   </nav>
 
@@ -66,8 +78,8 @@
       </div>
       <p style="max-width:640px; margin:36px 0 0; font-size:19px; line-height:1.6; text-wrap:pretty; color:#F4EFE2">Bing had his Clam Bake. We have Herndon Centennial. A fun way to get together, meet new people or enjoy the company of old friends, and enjoy a game of golf. Low cost, low maintenance, and a yardage that fits our players pretty well.</p>
       <div style="display:flex; flex-wrap:wrap; gap:14px; margin:34px 0 64px">
-        <a href="sms:+17035851197" style="padding:16px 30px; background:#E0B52B; color:#123C2F; border:3px solid #F4EFE2; font-family:'Archivo Black',Helvetica,sans-serif; font-size:14px; letter-spacing:0.04em; text-transform:uppercase" class="hv2">Text Rob · 703-585-1197</a>
-        <a href="mailto:rob_roberts6@yahoo.com?subject=Clam%20Bake%202026" style="padding:16px 30px; background:transparent; color:#F4EFE2; border:3px solid #F4EFE2; font-family:'Archivo Black',Helvetica,sans-serif; font-size:14px; letter-spacing:0.04em; text-transform:uppercase" class="hv3">Email Rob</a>
+        <a href="sms:+17035851197" style="padding:16px 30px; background:#E0B52B; color:#123C2F; border:3px solid #F4EFE2; font-family:'Archivo Black',Helvetica,sans-serif; font-size:14px; letter-spacing:0.04em; text-transform:uppercase" style-hover="background:#F4EFE2">Text Rob · 703-585-1197</a>
+        <a href="mailto:rob_roberts6@yahoo.com?subject=Clam%20Bake%202026" style="padding:16px 30px; background:transparent; color:#F4EFE2; border:3px solid #F4EFE2; font-family:'Archivo Black',Helvetica,sans-serif; font-size:14px; letter-spacing:0.04em; text-transform:uppercase" style-hover="background:#F4EFE2; color:#123C2F">Email Rob</a>
       </div>
     </div>
   </header>
@@ -85,8 +97,8 @@
         </div>
       </div>
       <div style="display:flex; flex-direction:column; gap:14px; flex:0 1 300px">
-        <a href="https://venmo.com/u/Rob-Roberts-11" target="_blank" rel="noopener" style="display:block; text-align:center; padding:22px 28px; background:#123C2F; color:#E0B52B; border:3px solid #123C2F; font-family:'Archivo Black',Helvetica,sans-serif; font-size:18px; letter-spacing:0.02em; text-transform:uppercase; box-shadow:8px 8px 0 rgba(18,60,47,0.35)" class="hvpay">Pay on Venmo</a>
-        <a href="sms:+17035851197" style="display:block; text-align:center; padding:16px 28px; background:transparent; color:#123C2F; border:3px solid #123C2F; font-family:'Archivo Black',Helvetica,sans-serif; font-size:13px; letter-spacing:0.04em; text-transform:uppercase" class="hv4">Questions? Text Rob</a>
+        <a href="https://venmo.com/u/Rob-Roberts-11" target="_blank" rel="noopener" style="display:block; text-align:center; padding:22px 28px; background:#123C2F; color:#E0B52B; border:3px solid #123C2F; font-family:'Archivo Black',Helvetica,sans-serif; font-size:18px; letter-spacing:0.02em; text-transform:uppercase; box-shadow:8px 8px 0 rgba(18,60,47,0.35)" style-hover="background:#E05A2B; color:#FBF8F0">Pay on Venmo</a>
+        <a href="sms:+17035851197" style="display:block; text-align:center; padding:16px 28px; background:transparent; color:#123C2F; border:3px solid #123C2F; font-family:'Archivo Black',Helvetica,sans-serif; font-size:13px; letter-spacing:0.04em; text-transform:uppercase" style-hover="background:#123C2F; color:#E0B52B">Questions? Text Rob</a>
       </div>
     </div>
   </section>
@@ -138,11 +150,11 @@
         <p style="margin:0 0 22px; font-size:17px; line-height:1.6; color:#3B5546; text-wrap:pretty">Not the best, certainly not the worst, but generally in reasonable shape. Low cost, and the yardage fits our players pretty well.</p>
         <div style="font-family:'DM Mono',monospace; font-size:14px; line-height:1.7; color:#123C2F">909 Ford Ave<br>Herndon, VA 20170</div>
         <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:24px">
-          <a href="https://www.google.com/maps/search/?api=1&query=Herndon+Centennial+Golf+Course+909+Ford+Ave+Herndon+VA" target="_blank" rel="noopener" style="padding:12px 22px; border:3px solid #123C2F; background:#E0B52B; color:#123C2F; font-family:'Archivo Black',sans-serif; font-size:12px; letter-spacing:0.05em; text-transform:uppercase" class="hv4">Directions</a>
+          <a href="https://www.google.com/maps/search/?api=1&query=Herndon+Centennial+Golf+Course+909+Ford+Ave+Herndon+VA" target="_blank" rel="noopener" style="padding:12px 22px; border:3px solid #123C2F; background:#E0B52B; color:#123C2F; font-family:'Archivo Black',sans-serif; font-size:12px; letter-spacing:0.05em; text-transform:uppercase" style-hover="background:#123C2F; color:#E0B52B">Directions</a>
         </div>
       </div>
       <div style="position:relative; min-height:300px; border:3px solid #123C2F; overflow:hidden">
-        <img src="course.jpeg" alt="Aerial view of Herndon Centennial Golf Course" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block">
+        <img src="uploads/IMG_8025.jpeg" alt="Aerial view of Herndon Centennial Golf Course" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block">
         <span style="position:absolute; left:22px; bottom:22px; font-family:'DM Mono',monospace; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; background:#123C2F; color:#F4EFE2; padding:8px 12px">Herndon Centennial</span>
       </div>
     </div>
@@ -154,148 +166,27 @@
       <h2 style="margin:0 0 12px; font-family:'Archivo Black',Helvetica,sans-serif; font-size:clamp(36px,5.5vw,68px); line-height:0.92; letter-spacing:-0.03em; text-transform:uppercase">Tee sheet</h2>
       <p style="max-width:600px; margin:0 0 44px; font-size:17px; line-height:1.6; text-wrap:pretty">Consecutive tee times starting at 11:33 AM — two teams per slot. Some of us will be groggy from Chris Stapleton the night before, so show up with time to hit range balls. Pairings get filled in as players commit.</p>
 
-      <div id="tee-grid" style="display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:0; border-top:2px solid #3B5546; border-left:2px solid #3B5546">
-        
+      <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:0; border-top:2px solid #3B5546; border-left:2px solid #3B5546">
+        <sc-for list="{{ teeSlots }}" as="slot" hint-placeholder-count="12">
           <div style="border-right:2px solid #3B5546; border-bottom:2px solid #3B5546; padding:20px 22px; display:flex; flex-direction:column; gap:14px">
             <div style="display:flex; align-items:baseline; justify-content:space-between; gap:10px">
-              <span style="font-family:'Archivo Black',Helvetica,sans-serif; font-size:26px; letter-spacing:-0.02em; color:#E0B52B">11:30 AM</span>
-              <span style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.14em; color:#8FA898">SLOT 01</span>
+              <span style="font-family:'Archivo Black',Helvetica,sans-serif; font-size:26px; letter-spacing:-0.02em; color:#E0B52B">{{ slot.time }}</span>
+              <span style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.14em; color:#8FA898">SLOT {{ slot.num }}</span>
             </div>
             <div style="display:flex; flex-direction:column; gap:8px">
-              <div style="display:flex; gap:10px; align-items:center"><span style="font-family:'DM Mono',monospace; font-size:11px; color:#8FA898; width:16px; flex:0 0 auto">A</span><span style="font-family:'DM Mono',monospace; font-size:13px; color:#F4EFE2; flex:1 1 auto; min-width:0">OPEN</span><span style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.06em; color:#E0B52B; border:1px solid #3B5546; padding:2px 6px; flex:0 0 auto; white-space:nowrap">HCP &mdash;</span></div>
-              <div style="display:flex; gap:10px; align-items:center"><span style="font-family:'DM Mono',monospace; font-size:11px; color:#8FA898; width:16px; flex:0 0 auto">B</span><span style="font-family:'DM Mono',monospace; font-size:13px; color:#F4EFE2; flex:1 1 auto; min-width:0">OPEN</span><span style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.06em; color:#E0B52B; border:1px solid #3B5546; padding:2px 6px; flex:0 0 auto; white-space:nowrap">HCP &mdash;</span></div>
+              <div style="display:flex; gap:10px; align-items:center"><span style="font-family:'DM Mono',monospace; font-size:11px; color:#8FA898; width:16px; flex:0 0 auto">A</span><span style="font-family:'DM Mono',monospace; font-size:13px; color:#F4EFE2; flex:1 1 auto; min-width:0">{{ slot.a }}</span><span style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.06em; color:#E0B52B; border:1px solid #3B5546; padding:2px 6px; flex:0 0 auto; white-space:nowrap">{{ slot.ahcp }}</span></div>
+              <div style="display:flex; gap:10px; align-items:center"><span style="font-family:'DM Mono',monospace; font-size:11px; color:#8FA898; width:16px; flex:0 0 auto">B</span><span style="font-family:'DM Mono',monospace; font-size:13px; color:#F4EFE2; flex:1 1 auto; min-width:0">{{ slot.b }}</span><span style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.06em; color:#E0B52B; border:1px solid #3B5546; padding:2px 6px; flex:0 0 auto; white-space:nowrap">{{ slot.bhcp }}</span></div>
             </div>
           </div>
-        
-          <div style="border-right:2px solid #3B5546; border-bottom:2px solid #3B5546; padding:20px 22px; display:flex; flex-direction:column; gap:14px">
-            <div style="display:flex; align-items:baseline; justify-content:space-between; gap:10px">
-              <span style="font-family:'Archivo Black',Helvetica,sans-serif; font-size:26px; letter-spacing:-0.02em; color:#E0B52B">11:38 AM</span>
-              <span style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.14em; color:#8FA898">SLOT 02</span>
-            </div>
-            <div style="display:flex; flex-direction:column; gap:8px">
-              <div style="display:flex; gap:10px; align-items:center"><span style="font-family:'DM Mono',monospace; font-size:11px; color:#8FA898; width:16px; flex:0 0 auto">A</span><span style="font-family:'DM Mono',monospace; font-size:13px; color:#F4EFE2; flex:1 1 auto; min-width:0">OPEN</span><span style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.06em; color:#E0B52B; border:1px solid #3B5546; padding:2px 6px; flex:0 0 auto; white-space:nowrap">HCP &mdash;</span></div>
-              <div style="display:flex; gap:10px; align-items:center"><span style="font-family:'DM Mono',monospace; font-size:11px; color:#8FA898; width:16px; flex:0 0 auto">B</span><span style="font-family:'DM Mono',monospace; font-size:13px; color:#F4EFE2; flex:1 1 auto; min-width:0">OPEN</span><span style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.06em; color:#E0B52B; border:1px solid #3B5546; padding:2px 6px; flex:0 0 auto; white-space:nowrap">HCP &mdash;</span></div>
-            </div>
-          </div>
-        
-          <div style="border-right:2px solid #3B5546; border-bottom:2px solid #3B5546; padding:20px 22px; display:flex; flex-direction:column; gap:14px">
-            <div style="display:flex; align-items:baseline; justify-content:space-between; gap:10px">
-              <span style="font-family:'Archivo Black',Helvetica,sans-serif; font-size:26px; letter-spacing:-0.02em; color:#E0B52B">11:46 AM</span>
-              <span style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.14em; color:#8FA898">SLOT 03</span>
-            </div>
-            <div style="display:flex; flex-direction:column; gap:8px">
-              <div style="display:flex; gap:10px; align-items:center"><span style="font-family:'DM Mono',monospace; font-size:11px; color:#8FA898; width:16px; flex:0 0 auto">A</span><span style="font-family:'DM Mono',monospace; font-size:13px; color:#F4EFE2; flex:1 1 auto; min-width:0">OPEN</span><span style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.06em; color:#E0B52B; border:1px solid #3B5546; padding:2px 6px; flex:0 0 auto; white-space:nowrap">HCP &mdash;</span></div>
-              <div style="display:flex; gap:10px; align-items:center"><span style="font-family:'DM Mono',monospace; font-size:11px; color:#8FA898; width:16px; flex:0 0 auto">B</span><span style="font-family:'DM Mono',monospace; font-size:13px; color:#F4EFE2; flex:1 1 auto; min-width:0">OPEN</span><span style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.06em; color:#E0B52B; border:1px solid #3B5546; padding:2px 6px; flex:0 0 auto; white-space:nowrap">HCP &mdash;</span></div>
-            </div>
-          </div>
-        
-          <div style="border-right:2px solid #3B5546; border-bottom:2px solid #3B5546; padding:20px 22px; display:flex; flex-direction:column; gap:14px">
-            <div style="display:flex; align-items:baseline; justify-content:space-between; gap:10px">
-              <span style="font-family:'Archivo Black',Helvetica,sans-serif; font-size:26px; letter-spacing:-0.02em; color:#E0B52B">11:54 AM</span>
-              <span style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.14em; color:#8FA898">SLOT 04</span>
-            </div>
-            <div style="display:flex; flex-direction:column; gap:8px">
-              <div style="display:flex; gap:10px; align-items:center"><span style="font-family:'DM Mono',monospace; font-size:11px; color:#8FA898; width:16px; flex:0 0 auto">A</span><span style="font-family:'DM Mono',monospace; font-size:13px; color:#F4EFE2; flex:1 1 auto; min-width:0">OPEN</span><span style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.06em; color:#E0B52B; border:1px solid #3B5546; padding:2px 6px; flex:0 0 auto; white-space:nowrap">HCP &mdash;</span></div>
-              <div style="display:flex; gap:10px; align-items:center"><span style="font-family:'DM Mono',monospace; font-size:11px; color:#8FA898; width:16px; flex:0 0 auto">B</span><span style="font-family:'DM Mono',monospace; font-size:13px; color:#F4EFE2; flex:1 1 auto; min-width:0">OPEN</span><span style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.06em; color:#E0B52B; border:1px solid #3B5546; padding:2px 6px; flex:0 0 auto; white-space:nowrap">HCP &mdash;</span></div>
-            </div>
-          </div>
-        
-          <div style="border-right:2px solid #3B5546; border-bottom:2px solid #3B5546; padding:20px 22px; display:flex; flex-direction:column; gap:14px">
-            <div style="display:flex; align-items:baseline; justify-content:space-between; gap:10px">
-              <span style="font-family:'Archivo Black',Helvetica,sans-serif; font-size:26px; letter-spacing:-0.02em; color:#E0B52B">12:02 PM</span>
-              <span style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.14em; color:#8FA898">SLOT 05</span>
-            </div>
-            <div style="display:flex; flex-direction:column; gap:8px">
-              <div style="display:flex; gap:10px; align-items:center"><span style="font-family:'DM Mono',monospace; font-size:11px; color:#8FA898; width:16px; flex:0 0 auto">A</span><span style="font-family:'DM Mono',monospace; font-size:13px; color:#F4EFE2; flex:1 1 auto; min-width:0">OPEN</span><span style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.06em; color:#E0B52B; border:1px solid #3B5546; padding:2px 6px; flex:0 0 auto; white-space:nowrap">HCP &mdash;</span></div>
-              <div style="display:flex; gap:10px; align-items:center"><span style="font-family:'DM Mono',monospace; font-size:11px; color:#8FA898; width:16px; flex:0 0 auto">B</span><span style="font-family:'DM Mono',monospace; font-size:13px; color:#F4EFE2; flex:1 1 auto; min-width:0">OPEN</span><span style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.06em; color:#E0B52B; border:1px solid #3B5546; padding:2px 6px; flex:0 0 auto; white-space:nowrap">HCP &mdash;</span></div>
-            </div>
-          </div>
-        
-          <div style="border-right:2px solid #3B5546; border-bottom:2px solid #3B5546; padding:20px 22px; display:flex; flex-direction:column; gap:14px">
-            <div style="display:flex; align-items:baseline; justify-content:space-between; gap:10px">
-              <span style="font-family:'Archivo Black',Helvetica,sans-serif; font-size:26px; letter-spacing:-0.02em; color:#E0B52B">12:10 PM</span>
-              <span style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.14em; color:#8FA898">SLOT 06</span>
-            </div>
-            <div style="display:flex; flex-direction:column; gap:8px">
-              <div style="display:flex; gap:10px; align-items:center"><span style="font-family:'DM Mono',monospace; font-size:11px; color:#8FA898; width:16px; flex:0 0 auto">A</span><span style="font-family:'DM Mono',monospace; font-size:13px; color:#F4EFE2; flex:1 1 auto; min-width:0">OPEN</span><span style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.06em; color:#E0B52B; border:1px solid #3B5546; padding:2px 6px; flex:0 0 auto; white-space:nowrap">HCP &mdash;</span></div>
-              <div style="display:flex; gap:10px; align-items:center"><span style="font-family:'DM Mono',monospace; font-size:11px; color:#8FA898; width:16px; flex:0 0 auto">B</span><span style="font-family:'DM Mono',monospace; font-size:13px; color:#F4EFE2; flex:1 1 auto; min-width:0">OPEN</span><span style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.06em; color:#E0B52B; border:1px solid #3B5546; padding:2px 6px; flex:0 0 auto; white-space:nowrap">HCP &mdash;</span></div>
-            </div>
-          </div>
-        
-          <div style="border-right:2px solid #3B5546; border-bottom:2px solid #3B5546; padding:20px 22px; display:flex; flex-direction:column; gap:14px">
-            <div style="display:flex; align-items:baseline; justify-content:space-between; gap:10px">
-              <span style="font-family:'Archivo Black',Helvetica,sans-serif; font-size:26px; letter-spacing:-0.02em; color:#E0B52B">12:18 PM</span>
-              <span style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.14em; color:#8FA898">SLOT 07</span>
-            </div>
-            <div style="display:flex; flex-direction:column; gap:8px">
-              <div style="display:flex; gap:10px; align-items:center"><span style="font-family:'DM Mono',monospace; font-size:11px; color:#8FA898; width:16px; flex:0 0 auto">A</span><span style="font-family:'DM Mono',monospace; font-size:13px; color:#F4EFE2; flex:1 1 auto; min-width:0">OPEN</span><span style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.06em; color:#E0B52B; border:1px solid #3B5546; padding:2px 6px; flex:0 0 auto; white-space:nowrap">HCP &mdash;</span></div>
-              <div style="display:flex; gap:10px; align-items:center"><span style="font-family:'DM Mono',monospace; font-size:11px; color:#8FA898; width:16px; flex:0 0 auto">B</span><span style="font-family:'DM Mono',monospace; font-size:13px; color:#F4EFE2; flex:1 1 auto; min-width:0">OPEN</span><span style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.06em; color:#E0B52B; border:1px solid #3B5546; padding:2px 6px; flex:0 0 auto; white-space:nowrap">HCP &mdash;</span></div>
-            </div>
-          </div>
-        
-          <div style="border-right:2px solid #3B5546; border-bottom:2px solid #3B5546; padding:20px 22px; display:flex; flex-direction:column; gap:14px">
-            <div style="display:flex; align-items:baseline; justify-content:space-between; gap:10px">
-              <span style="font-family:'Archivo Black',Helvetica,sans-serif; font-size:26px; letter-spacing:-0.02em; color:#E0B52B">12:26 PM</span>
-              <span style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.14em; color:#8FA898">SLOT 08</span>
-            </div>
-            <div style="display:flex; flex-direction:column; gap:8px">
-              <div style="display:flex; gap:10px; align-items:center"><span style="font-family:'DM Mono',monospace; font-size:11px; color:#8FA898; width:16px; flex:0 0 auto">A</span><span style="font-family:'DM Mono',monospace; font-size:13px; color:#F4EFE2; flex:1 1 auto; min-width:0">OPEN</span><span style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.06em; color:#E0B52B; border:1px solid #3B5546; padding:2px 6px; flex:0 0 auto; white-space:nowrap">HCP &mdash;</span></div>
-              <div style="display:flex; gap:10px; align-items:center"><span style="font-family:'DM Mono',monospace; font-size:11px; color:#8FA898; width:16px; flex:0 0 auto">B</span><span style="font-family:'DM Mono',monospace; font-size:13px; color:#F4EFE2; flex:1 1 auto; min-width:0">OPEN</span><span style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.06em; color:#E0B52B; border:1px solid #3B5546; padding:2px 6px; flex:0 0 auto; white-space:nowrap">HCP &mdash;</span></div>
-            </div>
-          </div>
-        
-          <div style="border-right:2px solid #3B5546; border-bottom:2px solid #3B5546; padding:20px 22px; display:flex; flex-direction:column; gap:14px">
-            <div style="display:flex; align-items:baseline; justify-content:space-between; gap:10px">
-              <span style="font-family:'Archivo Black',Helvetica,sans-serif; font-size:26px; letter-spacing:-0.02em; color:#E0B52B">12:34 PM</span>
-              <span style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.14em; color:#8FA898">SLOT 09</span>
-            </div>
-            <div style="display:flex; flex-direction:column; gap:8px">
-              <div style="display:flex; gap:10px; align-items:center"><span style="font-family:'DM Mono',monospace; font-size:11px; color:#8FA898; width:16px; flex:0 0 auto">A</span><span style="font-family:'DM Mono',monospace; font-size:13px; color:#F4EFE2; flex:1 1 auto; min-width:0">OPEN</span><span style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.06em; color:#E0B52B; border:1px solid #3B5546; padding:2px 6px; flex:0 0 auto; white-space:nowrap">HCP &mdash;</span></div>
-              <div style="display:flex; gap:10px; align-items:center"><span style="font-family:'DM Mono',monospace; font-size:11px; color:#8FA898; width:16px; flex:0 0 auto">B</span><span style="font-family:'DM Mono',monospace; font-size:13px; color:#F4EFE2; flex:1 1 auto; min-width:0">OPEN</span><span style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.06em; color:#E0B52B; border:1px solid #3B5546; padding:2px 6px; flex:0 0 auto; white-space:nowrap">HCP &mdash;</span></div>
-            </div>
-          </div>
-        
-          <div style="border-right:2px solid #3B5546; border-bottom:2px solid #3B5546; padding:20px 22px; display:flex; flex-direction:column; gap:14px">
-            <div style="display:flex; align-items:baseline; justify-content:space-between; gap:10px">
-              <span style="font-family:'Archivo Black',Helvetica,sans-serif; font-size:26px; letter-spacing:-0.02em; color:#E0B52B">12:42 PM</span>
-              <span style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.14em; color:#8FA898">SLOT 10</span>
-            </div>
-            <div style="display:flex; flex-direction:column; gap:8px">
-              <div style="display:flex; gap:10px; align-items:center"><span style="font-family:'DM Mono',monospace; font-size:11px; color:#8FA898; width:16px; flex:0 0 auto">A</span><span style="font-family:'DM Mono',monospace; font-size:13px; color:#F4EFE2; flex:1 1 auto; min-width:0">OPEN</span><span style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.06em; color:#E0B52B; border:1px solid #3B5546; padding:2px 6px; flex:0 0 auto; white-space:nowrap">HCP &mdash;</span></div>
-              <div style="display:flex; gap:10px; align-items:center"><span style="font-family:'DM Mono',monospace; font-size:11px; color:#8FA898; width:16px; flex:0 0 auto">B</span><span style="font-family:'DM Mono',monospace; font-size:13px; color:#F4EFE2; flex:1 1 auto; min-width:0">OPEN</span><span style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.06em; color:#E0B52B; border:1px solid #3B5546; padding:2px 6px; flex:0 0 auto; white-space:nowrap">HCP &mdash;</span></div>
-            </div>
-          </div>
-        
-          <div style="border-right:2px solid #3B5546; border-bottom:2px solid #3B5546; padding:20px 22px; display:flex; flex-direction:column; gap:14px">
-            <div style="display:flex; align-items:baseline; justify-content:space-between; gap:10px">
-              <span style="font-family:'Archivo Black',Helvetica,sans-serif; font-size:26px; letter-spacing:-0.02em; color:#E0B52B">12:50 PM</span>
-              <span style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.14em; color:#8FA898">SLOT 11</span>
-            </div>
-            <div style="display:flex; flex-direction:column; gap:8px">
-              <div style="display:flex; gap:10px; align-items:center"><span style="font-family:'DM Mono',monospace; font-size:11px; color:#8FA898; width:16px; flex:0 0 auto">A</span><span style="font-family:'DM Mono',monospace; font-size:13px; color:#F4EFE2; flex:1 1 auto; min-width:0">OPEN</span><span style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.06em; color:#E0B52B; border:1px solid #3B5546; padding:2px 6px; flex:0 0 auto; white-space:nowrap">HCP &mdash;</span></div>
-              <div style="display:flex; gap:10px; align-items:center"><span style="font-family:'DM Mono',monospace; font-size:11px; color:#8FA898; width:16px; flex:0 0 auto">B</span><span style="font-family:'DM Mono',monospace; font-size:13px; color:#F4EFE2; flex:1 1 auto; min-width:0">OPEN</span><span style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.06em; color:#E0B52B; border:1px solid #3B5546; padding:2px 6px; flex:0 0 auto; white-space:nowrap">HCP &mdash;</span></div>
-            </div>
-          </div>
-        
-          <div style="border-right:2px solid #3B5546; border-bottom:2px solid #3B5546; padding:20px 22px; display:flex; flex-direction:column; gap:14px">
-            <div style="display:flex; align-items:baseline; justify-content:space-between; gap:10px">
-              <span style="font-family:'Archivo Black',Helvetica,sans-serif; font-size:26px; letter-spacing:-0.02em; color:#E0B52B">12:58 PM</span>
-              <span style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.14em; color:#8FA898">SLOT 12</span>
-            </div>
-            <div style="display:flex; flex-direction:column; gap:8px">
-              <div style="display:flex; gap:10px; align-items:center"><span style="font-family:'DM Mono',monospace; font-size:11px; color:#8FA898; width:16px; flex:0 0 auto">A</span><span style="font-family:'DM Mono',monospace; font-size:13px; color:#F4EFE2; flex:1 1 auto; min-width:0">OPEN</span><span style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.06em; color:#E0B52B; border:1px solid #3B5546; padding:2px 6px; flex:0 0 auto; white-space:nowrap">HCP &mdash;</span></div>
-              <div style="display:flex; gap:10px; align-items:center"><span style="font-family:'DM Mono',monospace; font-size:11px; color:#8FA898; width:16px; flex:0 0 auto">B</span><span style="font-family:'DM Mono',monospace; font-size:13px; color:#F4EFE2; flex:1 1 auto; min-width:0">OPEN</span><span style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.06em; color:#E0B52B; border:1px solid #3B5546; padding:2px 6px; flex:0 0 auto; white-space:nowrap">HCP &mdash;</span></div>
-            </div>
-          </div>
-        
+        </sc-for>
       </div>
       <div style="display:flex; flex-wrap:wrap; gap:10px 26px; margin:26px 0 0; font-family:'DM Mono',monospace; font-size:12px; letter-spacing:0.08em; color:#8FA898">
         <span><span style="color:#E0B52B; border:1px solid #3B5546; padding:2px 6px; margin-right:8px">HCP 4</span>Strokes the team gets off their gross score</span>
         <span>Slots, pairings and handicaps subject to change based on field size.</span>
       </div>
-      <div id="sheet-warn" style="display:none">
+      <sc-if value="{{ sheetFailed }}" hint-placeholder-val="{{ false }}">
         <p style="margin:12px 0 0; display:inline-block; font-family:'DM Mono',monospace; font-size:12px; letter-spacing:0.06em; color:#123C2F; background:#E0B52B; padding:8px 12px">Live pairings unavailable — showing default slots.</p>
-      </div>
+      </sc-if>
     </div>
   </section>
 
@@ -321,6 +212,25 @@
           <p style="margin:0; font-size:16px; line-height:1.6; color:#3B5546; text-wrap:pretty">Lowest score on a hole wins the skin — no ties. Whatever's left of the prize pool after payouts and raffles goes here.</p>
         </div>
       </div>
+
+      <div style="margin-top:64px; border-top:3px solid #123C2F; padding-top:48px">
+        <h3 style="margin:0 0 28px; font-family:'Archivo Black',Helvetica,sans-serif; font-size:28px; text-transform:uppercase; letter-spacing:-0.02em">Full rules &amp; prize breakdown</h3>
+
+        <div style="display:flex; flex-direction:column; gap:22px; max-width:760px">
+          <div style="display:flex; gap:14px; align-items:baseline"><span style="color:#E05A2B; font-family:'Archivo Black',sans-serif; font-size:14px; flex:0 0 auto">→</span><p style="margin:0; font-size:16px; line-height:1.6; color:#3B5546; text-wrap:pretty"><strong style="color:#123C2F">Format.</strong> 2-Man Captain's Choice: both players hit a tee shot, pick the best one, both hit again from there, and repeat until you hole out.</p></div>
+          <div style="display:flex; gap:14px; align-items:baseline"><span style="color:#E05A2B; font-family:'Archivo Black',sans-serif; font-size:14px; flex:0 0 auto">→</span><p style="margin:0; font-size:16px; line-height:1.6; color:#3B5546; text-wrap:pretty"><strong style="color:#123C2F">OB / lost ball.</strong> Play all the rules of golf, except we don't penalize distance for shots out of bounds or lost. Do your best to determine where the ball went in and drop there, taking a one-stroke penalty. If it's in question, consult your foursome to agree on the best spot.</p></div>
+          <div style="display:flex; gap:14px; align-items:baseline"><span style="color:#E05A2B; font-family:'Archivo Black',sans-serif; font-size:14px; flex:0 0 auto">→</span><p style="margin:0; font-size:16px; line-height:1.6; color:#3B5546; text-wrap:pretty"><strong style="color:#123C2F">Pace of play.</strong> The drop rule above is meant to keep things moving — along the same lines, please cap your score at double bogey. Want to torture yourself and play it out instead? Fine, as long as you keep pace.</p></div>
+          <div style="display:flex; gap:14px; align-items:baseline"><span style="color:#E05A2B; font-family:'Archivo Black',sans-serif; font-size:14px; flex:0 0 auto">→</span><p style="margin:0; font-size:16px; line-height:1.6; color:#3B5546; text-wrap:pretty"><strong style="color:#123C2F">Lift, clean and place.</strong> Allowed — but don't move your ball from rough to fairway, trap to fairway, or fringe to green.</p></div>
+          <div style="display:flex; gap:14px; align-items:baseline"><span style="color:#E05A2B; font-family:'Archivo Black',sans-serif; font-size:14px; flex:0 0 auto">→</span><p style="margin:0; font-size:16px; line-height:1.6; color:#3B5546; text-wrap:pretty"><strong style="color:#123C2F">1st &amp; 2nd place.</strong> Aggregate stroke play, with separate low-net (handicapped) and low-gross (no handicap) winners for each — a single team can only win net or gross, not both. A tie for a place is broken on the hardest handicap hole first, continuing hole by hole until a winner emerges; no handicap is used in the tiebreaker. If teams match on every hole, that place is split between them.</p></div>
+          <div style="display:flex; gap:14px; align-items:baseline"><span style="color:#E05A2B; font-family:'Archivo Black',sans-serif; font-size:14px; flex:0 0 auto">→</span><p style="margin:0; font-size:16px; line-height:1.6; color:#3B5546; text-wrap:pretty"><strong style="color:#123C2F">Long drive &amp; closest to the pin.</strong> To win, your ball must be on the fairway (long drive) or on the green (closest to the pin).</p></div>
+          <div style="display:flex; gap:14px; align-items:baseline"><span style="color:#E05A2B; font-family:'Archivo Black',sans-serif; font-size:14px; flex:0 0 auto">→</span><p style="margin:0; font-size:16px; line-height:1.6; color:#3B5546; text-wrap:pretty"><strong style="color:#123C2F">Skins.</strong> Lowest score on a hole wins it — no ties. Skins aren't handicapped, and their value depends on how many are won. If no skins are won outright, we'll raffle 6 additional "skins" to players who haven't yet won a raffle or other prize.</p></div>
+        </div>
+
+        <div style="margin-top:40px; background:#123C2F; color:#F4EFE2; border:3px solid #123C2F; padding:26px 28px; max-width:760px">
+          <div style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:#E0B52B; margin-bottom:10px">Host's final note</div>
+          <p style="margin:0; font-size:16px; line-height:1.6; text-wrap:pretty">This is meant to be a fun way to get together, meet new people or enjoy the company of old friends, and enjoy a game of golf. I'm doing my best to keep competition fair. As a reminder, prize pools will be adjusted based on the final number of teams and paid entries.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -338,45 +248,20 @@
         <div style="flex:1 1 150px; padding:20px 22px; border-right:3px solid #123C2F; border-bottom:3px solid #123C2F"><div style="font-family:'Archivo Black',sans-serif; font-size:34px; letter-spacing:-0.03em; color:#E05A2B">∞</div><div style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#3B5546; margin-top:6px">Skins</div></div>
       </div>
 
-      
+      <sc-if value="{{ showPayouts }}" hint-placeholder-val="{{ true }}">
         <div>
           <h3 style="margin:0 0 8px; font-family:'Archivo Black',Helvetica,sans-serif; font-size:26px; text-transform:uppercase; letter-spacing:-0.02em">Last year, for reference</h3>
           <p style="margin:0 0 26px; font-family:'DM Mono',monospace; font-size:13px; letter-spacing:0.06em; color:#3B5546">36 players · final amounts depend on field size</p>
           <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:0; border-top:2px solid #123C2F; border-left:2px solid #123C2F">
-            
+            <sc-for list="{{ payouts }}" as="row" hint-placeholder-count="6">
               <div style="border-right:2px solid #123C2F; border-bottom:2px solid #123C2F; padding:18px 20px; display:flex; align-items:baseline; justify-content:space-between; gap:14px; background:#F4EFE2">
-                <span style="font-size:15px; font-weight:600; line-height:1.3">1st place</span>
-                <span style="font-family:'Archivo Black',sans-serif; font-size:22px; letter-spacing:-0.02em; color:#123C2F; white-space:nowrap">$80</span>
+                <span style="font-size:15px; font-weight:600; line-height:1.3">{{ row.label }}</span>
+                <span style="font-family:'Archivo Black',sans-serif; font-size:22px; letter-spacing:-0.02em; color:#123C2F; white-space:nowrap">{{ row.amount }}</span>
               </div>
-            
-              <div style="border-right:2px solid #123C2F; border-bottom:2px solid #123C2F; padding:18px 20px; display:flex; align-items:baseline; justify-content:space-between; gap:14px; background:#F4EFE2">
-                <span style="font-size:15px; font-weight:600; line-height:1.3">2nd place</span>
-                <span style="font-family:'Archivo Black',sans-serif; font-size:22px; letter-spacing:-0.02em; color:#123C2F; white-space:nowrap">$40</span>
-              </div>
-            
-              <div style="border-right:2px solid #123C2F; border-bottom:2px solid #123C2F; padding:18px 20px; display:flex; align-items:baseline; justify-content:space-between; gap:14px; background:#F4EFE2">
-                <span style="font-size:15px; font-weight:600; line-height:1.3">Raffle winners (4)</span>
-                <span style="font-family:'Archivo Black',sans-serif; font-size:22px; letter-spacing:-0.02em; color:#123C2F; white-space:nowrap">$50 ea</span>
-              </div>
-            
-              <div style="border-right:2px solid #123C2F; border-bottom:2px solid #123C2F; padding:18px 20px; display:flex; align-items:baseline; justify-content:space-between; gap:14px; background:#F4EFE2">
-                <span style="font-size:15px; font-weight:600; line-height:1.3">Long drive</span>
-                <span style="font-family:'Archivo Black',sans-serif; font-size:22px; letter-spacing:-0.02em; color:#123C2F; white-space:nowrap">$25</span>
-              </div>
-            
-              <div style="border-right:2px solid #123C2F; border-bottom:2px solid #123C2F; padding:18px 20px; display:flex; align-items:baseline; justify-content:space-between; gap:14px; background:#F4EFE2">
-                <span style="font-size:15px; font-weight:600; line-height:1.3">Closest to the pin (4)</span>
-                <span style="font-family:'Archivo Black',sans-serif; font-size:22px; letter-spacing:-0.02em; color:#123C2F; white-space:nowrap">$25 ea</span>
-              </div>
-            
-              <div style="border-right:2px solid #123C2F; border-bottom:2px solid #123C2F; padding:18px 20px; display:flex; align-items:baseline; justify-content:space-between; gap:14px; background:#F4EFE2">
-                <span style="font-size:15px; font-weight:600; line-height:1.3">Into the skins game</span>
-                <span style="font-family:'Archivo Black',sans-serif; font-size:22px; letter-spacing:-0.02em; color:#123C2F; white-space:nowrap">$167</span>
-              </div>
-            
+            </sc-for>
           </div>
         </div>
-      
+      </sc-if>
     </div>
   </section>
 
@@ -395,7 +280,7 @@
           <div style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#E05A2B; margin-bottom:10px">Where</div>
           <div style="font-family:'Archivo Black',sans-serif; font-size:24px; letter-spacing:-0.02em; line-height:1.1">Rob's place</div>
           <p style="margin:10px 0 0; font-family:'DM Mono',monospace; font-size:14px; line-height:1.5">11924 Riders Lane<br>Reston, VA 20191</p>
-          <a href="https://www.google.com/maps/search/?api=1&amp;query=11924+Riders+Lane+Reston+VA+20191" target="_blank" rel="noopener" style="display:inline-block; margin-top:14px; padding:10px 18px; border:3px solid #123C2F; background:#E0B52B; color:#123C2F; font-family:'Archivo Black',sans-serif; font-size:11px; letter-spacing:0.05em; text-transform:uppercase" class="hv4">Directions</a>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=11924+Riders+Lane+Reston+VA+20191" target="_blank" rel="noopener" style="display:inline-block; margin-top:14px; padding:10px 18px; border:3px solid #123C2F; background:#E0B52B; color:#123C2F; font-family:'Archivo Black',sans-serif; font-size:11px; letter-spacing:0.05em; text-transform:uppercase" style-hover="background:#123C2F; color:#E0B52B">Directions</a>
         </div>
         <div style="background:#FBF8F0; color:#123C2F; border:3px solid #123C2F; padding:26px">
           <div style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#E05A2B; margin-bottom:10px">How long</div>
@@ -412,11 +297,11 @@
       <h2 style="margin:0 0 12px; font-family:'Archivo Black',Helvetica,sans-serif; font-size:clamp(36px,5.5vw,68px); line-height:0.92; letter-spacing:-0.03em; text-transform:uppercase">Get in the field</h2>
       <p style="max-width:620px; margin:0 0 44px; font-size:18px; line-height:1.6; text-wrap:pretty">No forms, no portals. Shoot me a text or an email with your name, your partner's name if you have one, and whether you're in for the food. First come, first on the tee sheet.</p>
       <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:24px; margin-bottom:56px">
-        <a href="sms:+17035851197" style="display:block; padding:30px; background:#E0B52B; color:#123C2F; border:3px solid #F4EFE2" class="hv5">
+        <a href="sms:+17035851197" style="display:block; padding:30px; background:#E0B52B; color:#123C2F; border:3px solid #F4EFE2" style-hover="background:#F4EFE2">
           <div style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; margin-bottom:10px">Text — fastest</div>
           <div style="font-family:'Archivo Black',sans-serif; font-size:28px; letter-spacing:-0.025em">703-585-1197</div>
         </a>
-        <a href="mailto:rob_roberts6@yahoo.com?subject=Clam%20Bake%202026&body=Name%3A%0APartner%3A%0AFood%20(%2418)%3A%20yes%20%2F%20no%0AGuests%20for%20the%20party%3A" style="display:block; padding:30px; background:transparent; color:#F4EFE2; border:3px solid #F4EFE2" class="hv6">
+        <a href="mailto:rob_roberts6@yahoo.com?subject=Clam%20Bake%202026&body=Name%3A%0APartner%3A%0AFood%20(%2418)%3A%20yes%20%2F%20no%0AGuests%20for%20the%20party%3A" style="display:block; padding:30px; background:transparent; color:#F4EFE2; border:3px solid #F4EFE2" style-hover="background:#F4EFE2; color:#123C2F">
           <div style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; margin-bottom:10px">Email</div>
           <div style="font-family:'Archivo Black',sans-serif; font-size:22px; letter-spacing:-0.025em; word-break:break-word">rob_roberts6@yahoo.com</div>
         </a>
@@ -447,42 +332,12 @@
       <div style="font-family:'DM Mono',monospace; font-size:12px; letter-spacing:0.2em; text-transform:uppercase; color:#E05A2B; margin-bottom:14px">08 · Questions</div>
       <h2 style="margin:0 0 44px; font-family:'Archivo Black',Helvetica,sans-serif; font-size:clamp(36px,5.5vw,68px); line-height:0.92; letter-spacing:-0.03em; text-transform:uppercase">FAQ</h2>
       <div style="display:flex; flex-direction:column; gap:0; border-top:2px solid #123C2F">
-        
+        <sc-for list="{{ faqs }}" as="item" hint-placeholder-count="6">
           <div style="border-bottom:2px solid #123C2F; padding:26px 0; display:grid; grid-template-columns:minmax(0,1fr); gap:10px">
-            <h3 style="margin:0; font-family:'Archivo Black',Helvetica,sans-serif; font-size:21px; letter-spacing:-0.015em; line-height:1.2">I don't have a partner. Can I still play?</h3>
-            <p style="margin:0; font-size:17px; line-height:1.6; color:#3B5546; text-wrap:pretty">Yes. Bring your own if you can, but we can likely find another single for you from the group. Just say so when you sign up.</p>
+            <h3 style="margin:0; font-family:'Archivo Black',Helvetica,sans-serif; font-size:21px; letter-spacing:-0.015em; line-height:1.2">{{ item.q }}</h3>
+            <p style="margin:0; font-size:17px; line-height:1.6; color:#3B5546; text-wrap:pretty">{{ item.a }}</p>
           </div>
-        
-          <div style="border-bottom:2px solid #123C2F; padding:26px 0; display:grid; grid-template-columns:minmax(0,1fr); gap:10px">
-            <h3 style="margin:0; font-family:'Archivo Black',Helvetica,sans-serif; font-size:21px; letter-spacing:-0.015em; line-height:1.2">Do I need to be good at golf?</h3>
-            <p style="margin:0; font-size:17px; line-height:1.6; color:#3B5546; text-wrap:pretty">No. It's a scramble, so your partner covers your bad shots and you cover theirs. A good chunk of the prize pool goes to raffles and closest-to-the-pin — things anyone can win.</p>
-          </div>
-        
-          <div style="border-bottom:2px solid #123C2F; padding:26px 0; display:grid; grid-template-columns:minmax(0,1fr); gap:10px">
-            <h3 style="margin:0; font-family:'Archivo Black',Helvetica,sans-serif; font-size:21px; letter-spacing:-0.015em; line-height:1.2">Can my spouse or partner come to the party?</h3>
-            <p style="margin:0; font-size:17px; line-height:1.6; color:#3B5546; text-wrap:pretty">Absolutely. Significant others are welcome. Food is $18 per person for guests.</p>
-          </div>
-        
-          <div style="border-bottom:2px solid #123C2F; padding:26px 0; display:grid; grid-template-columns:minmax(0,1fr); gap:10px">
-            <h3 style="margin:0; font-family:'Archivo Black',Helvetica,sans-serif; font-size:21px; letter-spacing:-0.015em; line-height:1.2">What time should I get there?</h3>
-            <p style="margin:0; font-size:17px; line-height:1.6; color:#3B5546; text-wrap:pretty">Tee times run consecutively from 11:33 AM. Give yourself enough time to check in and hit range balls — they're included.</p>
-          </div>
-        
-          <div style="border-bottom:2px solid #123C2F; padding:26px 0; display:grid; grid-template-columns:minmax(0,1fr); gap:10px">
-            <h3 style="margin:0; font-family:'Archivo Black',Helvetica,sans-serif; font-size:21px; letter-spacing:-0.015em; line-height:1.2">Will there be handicaps?</h3>
-            <p style="margin:0; font-size:17px; line-height:1.6; color:#3B5546; text-wrap:pretty">We don't typically handicap, but have for a couple of teams. We'll look at the field and decide then. The aim is fair and fun.</p>
-          </div>
-        
-          <div style="border-bottom:2px solid #123C2F; padding:26px 0; display:grid; grid-template-columns:minmax(0,1fr); gap:10px">
-            <h3 style="margin:0; font-family:'Archivo Black',Helvetica,sans-serif; font-size:21px; letter-spacing:-0.015em; line-height:1.2">How do skins work?</h3>
-            <p style="margin:0; font-size:17px; line-height:1.6; color:#3B5546; text-wrap:pretty">Lowest score on a hole wins that hole's skin, no ties. Whatever's left of the prize pool after the placings, raffles, long drive and closest-to-pins funds it.</p>
-          </div>
-        
-          <div style="border-bottom:2px solid #123C2F; padding:26px 0; display:grid; grid-template-columns:minmax(0,1fr); gap:10px">
-            <h3 style="margin:0; font-family:'Archivo Black',Helvetica,sans-serif; font-size:21px; letter-spacing:-0.015em; line-height:1.2">What if it rains?</h3>
-            <p style="margin:0; font-size:17px; line-height:1.6; color:#3B5546; text-wrap:pretty">Text Rob. We'll follow the course's call and let everyone know as early as we can.</p>
-          </div>
-        
+        </sc-for>
       </div>
       <p style="margin:36px 0 0; font-size:17px; line-height:1.6; color:#3B5546">Still stuck? <a href="sms:+17035851197" style="font-weight:700; border-bottom:2px solid #E05A2B">Text Rob</a> or <a href="mailto:rob_roberts6@yahoo.com" style="font-weight:700; border-bottom:2px solid #E05A2B">email him</a>. Please share with anyone that's fun, low maintenance and would be interested in joining us.</p>
     </div>
@@ -501,42 +356,117 @@
     </div>
   </footer>
 </div>
-<script>
-(function(){
-  var CSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ3dsuBO4KVfRMtFiqbqm_-5YykxYuNmkXlE8P6L7KcNIFRiOteD8NM4F6NMqnmrOU0m2p8HG3EQmyc/pub?gid=2114113616&single=true&output=csv";
-  function parseCsv(txt){
-    var rows=[],row=[],f="",q=false;
-    for(var i=0;i<txt.length;i++){var c=txt[i];
-      if(q){ if(c==='"'){ if(txt[i+1]==='"'){f+='"';i++;} else q=false; } else f+=c; }
-      else if(c==='"') q=true;
-      else if(c===",") { row.push(f); f=""; }
-      else if(c==="\n"||c==="\r"){ if(c==="\r"&&txt[i+1]==="\n") i++; row.push(f); rows.push(row); row=[]; f=""; }
-      else f+=c;
-    }
-    if(f!==""||row.length){row.push(f);rows.push(row);}
-    return rows.filter(function(r){return r.some(function(v){return v.trim()!=="";});});
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;sheetCsvUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://docs.google.com/spreadsheets/d/e/2PACX-1vQ3dsuBO4KVfRMtFiqbqm_-5YykxYuNmkXlE8P6L7KcNIFRiOteD8NM4F6NMqnmrOU0m2p8HG3EQmyc/pub?gid=2114113616&amp;single=true&amp;output=csv&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Tee sheet&quot;},&quot;showPayouts&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Content&quot;},&quot;teeSlotCount&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:12,&quot;min&quot;:6,&quot;max&quot;:18,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Tee sheet&quot;},&quot;teeInterval&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:8,&quot;min&quot;:6,&quot;max&quot;:12,&quot;unit&quot;:&quot;min&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Tee sheet&quot;}}">
+class Component extends DCLogic {
+  state = { sheet: null, sheetFailed: false };
+
+  componentDidMount() {
+    const DEFAULT_CSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ3dsuBO4KVfRMtFiqbqm_-5YykxYuNmkXlE8P6L7KcNIFRiOteD8NM4F6NMqnmrOU0m2p8HG3EQmyc/pub?gid=2114113616&single=true&output=csv";
+    const raw = (this.props.sheetCsvUrl ?? DEFAULT_CSV).trim();
+    if (!raw) return;
+    // Accept a full published-CSV URL, or a bare 2PACX publish id.
+    const url = /^https?:/i.test(raw)
+      ? raw
+      : "https://docs.google.com/spreadsheets/d/e/" + raw + "/pub?gid=0&single=true&output=csv";
+    fetch(url)
+      .then(r => (r.ok ? r.text() : Promise.reject(new Error("HTTP " + r.status))))
+      .then(txt => {
+        const rows = this.parseCsv(txt).slice(1)
+          .map(c => ({
+            num: (c[0] || "").trim(),
+            time: (c[1] || "").trim(),
+            a: this.cell(c[2]),
+            b: this.cell(c[3]),
+            ahcp: this.hcp(c[4]),
+            bhcp: this.hcp(c[5])
+          }))
+          .filter(r => r.time && /^\d+$/.test(r.num));
+        if (!rows.length) throw new Error("no rows");
+        this.setState({ sheet: rows, sheetFailed: false });
+      })
+      .catch(err => {
+        console.warn("Tee sheet load failed:", err);
+        this.setState({ sheetFailed: true });
+      });
   }
-  function cell(v){ var s=(v||"").split(/\r?\n/).map(function(t){return t.trim();}).filter(Boolean).join(" / "); return s||"OPEN"; }
-  function hcp(v){ var s=(v||"").trim(); if(!s) return "HCP \u2014"; if(/^[\d.]+$/.test(s)) return parseFloat(s)===0 ? "SCRATCH" : "HCP "+s; return s.toUpperCase(); }
-  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
-  fetch(CSV).then(function(r){ if(!r.ok) throw new Error("HTTP "+r.status); return r.text(); })
-  .then(function(txt){
-    var rows = parseCsv(txt).slice(1).map(function(c){
-      return { num:(c[0]||"").trim(), time:(c[1]||"").trim(), a:cell(c[2]), b:cell(c[3]), ahcp:hcp(c[4]), bhcp:hcp(c[5]) };
-    }).filter(function(r){ return r.time && /^\d+$/.test(r.num); });
-    if(!rows.length) throw new Error("no rows");
-    var g = document.getElementById("tee-grid");
-    g.innerHTML = rows.map(function(s){
-      return '<div style="border-right:2px solid #3B5546; border-bottom:2px solid #3B5546; padding:20px 22px; display:flex; flex-direction:column; gap:14px">'
-        + '<div style="display:flex; align-items:baseline; justify-content:space-between; gap:10px">'
-        + '<span style="font-family:\'Archivo Black\',Helvetica,sans-serif; font-size:26px; letter-spacing:-0.02em; color:#E0B52B">'+esc(s.time)+'</span>'
-        + '<span style="font-family:\'DM Mono\',monospace; font-size:11px; letter-spacing:0.14em; color:#8FA898">SLOT '+esc(("0"+s.num).slice(-2))+'</span></div>'
-        + '<div style="display:flex; flex-direction:column; gap:8px">'
-        + ['a','b'].map(function(k){ return '<div style="display:flex; gap:10px; align-items:center"><span style="font-family:\'DM Mono\',monospace; font-size:11px; color:#8FA898; width:16px; flex:0 0 auto">'+k.toUpperCase()+'</span><span style="font-family:\'DM Mono\',monospace; font-size:13px; color:#F4EFE2; flex:1 1 auto; min-width:0">'+esc(s[k])+'</span><span style="font-family:\'DM Mono\',monospace; font-size:11px; letter-spacing:0.06em; color:#E0B52B; border:1px solid #3B5546; padding:2px 6px; flex:0 0 auto; white-space:nowrap">'+esc(s[k+'hcp'])+'</span></div>'; }).join("")
-        + '</div></div>';
-    }).join("");
-  })
-  .catch(function(e){ console.warn("Tee sheet load failed:", e); var w=document.getElementById("sheet-warn"); if(w) w.style.display="block"; });
-})();</script>
+
+  // Character-stream CSV parse: newlines inside quoted cells are kept, not row breaks.
+  parseCsv(txt) {
+    const rows = [];
+    let row = [], field = "", inQuotes = false;
+    for (let i = 0; i < txt.length; i++) {
+      const ch = txt[i];
+      if (inQuotes) {
+        if (ch === '"') {
+          if (txt[i + 1] === '"') { field += '"'; i++; }
+          else inQuotes = false;
+        } else field += ch;
+      } else if (ch === '"') inQuotes = true;
+      else if (ch === ",") { row.push(field); field = ""; }
+      else if (ch === "\n" || ch === "\r") {
+        if (ch === "\r" && txt[i + 1] === "\n") i++;
+        row.push(field); rows.push(row); row = []; field = "";
+      } else field += ch;
+    }
+    if (field !== "" || row.length) { row.push(field); rows.push(row); }
+    return rows.filter(r => r.some(v => v.trim() !== ""));
+  }
+
+  // A team cell may hold two names on separate lines — join them for one-line display.
+  cell(v) {
+    const s = (v || "").split(/\r?\n/).map(t => t.trim()).filter(Boolean).join(" / ");
+    return s || "OPEN";
+  }
+
+  // Columns E/F: a number (strokes), "scratch"/"0", or blank while undecided.
+  hcp(v) {
+    const s = (v || "").trim();
+    if (!s) return "HCP —";
+    if (/^[\d.]+$/.test(s)) return parseFloat(s) === 0 ? "SCRATCH" : "HCP " + s;
+    return s.toUpperCase();
+  }
+
+  renderVals() {
+    const count = this.props.teeSlotCount ?? 12;
+    const step = this.props.teeInterval ?? 8;
+    const start = 11 * 60 + 33;
+    const generated = Array.from({ length: count }, (_, i) => {
+      const m = start + i * step;
+      let h = Math.floor(m / 60);
+      const mm = String(m % 60).padStart(2, "0");
+      const ampm = h >= 12 ? "PM" : "AM";
+      if (h > 12) h -= 12;
+      return { time: h + ":" + mm + " " + ampm, num: String(i + 1).padStart(2, "0"), a: "OPEN", b: "OPEN", ahcp: "HCP —", bhcp: "HCP —" };
+    });
+    const teeSlots = this.state.sheet
+      ? this.state.sheet.map(r => ({ ...r, num: String(r.num).padStart(2, "0") }))
+      : generated;
+
+    return {
+      teeSlots,
+      sheetFailed: this.state.sheetFailed,
+      showPayouts: this.props.showPayouts ?? true,
+      payouts: [
+        { label: "1st place", amount: "$80" },
+        { label: "2nd place", amount: "$40" },
+        { label: "Raffle winners (4)", amount: "$50 ea" },
+        { label: "Long drive", amount: "$25" },
+        { label: "Closest to the pin (4)", amount: "$25 ea" },
+        { label: "Into the skins game", amount: "$167" }
+      ],
+      faqs: [
+        { q: "I don't have a partner. Can I still play?", a: "Yes. Bring your own if you can, but we can likely find another single for you from the group. Just say so when you sign up." },
+        { q: "Do I need to be good at golf?", a: "No. It's a scramble, so your partner covers your bad shots and you cover theirs. A good chunk of the prize pool goes to raffles and closest-to-the-pin — things anyone can win." },
+        { q: "Can my spouse or partner come to the party?", a: "Absolutely. Significant others are welcome. Food is $18 per person for guests." },
+        { q: "What time should I get there?", a: "Tee times run consecutively from 11:33 AM. Give yourself enough time to check in and hit range balls — they're included." },
+        { q: "Will there be handicaps?", a: "We don't typically handicap, but have for a couple of teams. We'll look at the field and decide then. The aim is fair and fun." },
+        { q: "How do skins work?", a: "Lowest score on a hole wins that hole's skin, no ties. Whatever's left of the prize pool after the placings, raffles, long drive and closest-to-pins funds it." },
+        { q: "What if it rains?", a: "Text Rob. We'll follow the course's call and let everyone know as early as we can." }
+      ]
+    };
+  }
+}
+</script>
 </body>
 </html>
