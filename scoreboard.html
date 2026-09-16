@@ -324,7 +324,10 @@ class Component extends DCLogic {
       updatedLabel: this.state.updated
         ? "Updated " + this.state.updated.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })
         : "Loading…",
-      reload: () => this.loadAll()
+      reload: () => {
+        const url = location.pathname + "?_=" + Date.now();
+        location.href = url;
+      }
     };
   }
 }
