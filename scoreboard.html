@@ -39,7 +39,10 @@ a:hover{color:#FBF8F0}
     </div>
     <div style="display:flex; flex-direction:column; align-items:flex-end; gap:8px">
       <div style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#8FA898">{{ updatedLabel }}</div>
-      <button onClick="{{ reload }}" style="padding:11px 18px; border:3px solid #E0B52B; background:transparent; color:#E0B52B; font-family:'Archivo Black',sans-serif; font-size:11px; letter-spacing:0.05em; text-transform:uppercase; cursor:pointer" style-hover="background:#E0B52B; color:#123C2F">Refresh now</button>
+      <div style="display:flex; gap:10px">
+        <a href="score-entry.html" style="padding:11px 18px; border:3px solid #E0B52B; background:#E0B52B; color:#123C2F; font-family:'Archivo Black',sans-serif; font-size:11px; letter-spacing:0.05em; text-transform:uppercase; text-decoration:none; display:inline-flex; align-items:center">← My scorecard</a>
+        <button onClick="{{ reload }}" style="padding:11px 18px; border:3px solid #E0B52B; background:transparent; color:#E0B52B; font-family:'Archivo Black',sans-serif; font-size:11px; letter-spacing:0.05em; text-transform:uppercase; cursor:pointer" style-hover="background:#E0B52B; color:#123C2F">Refresh now</button>
+      </div>
     </div>
   </div>
 

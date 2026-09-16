@@ -45,6 +45,8 @@ a{color:#E0B52B;text-decoration:none}
     </div>
   </div>
 
+  <a href="scoreboard.html" style="display:flex; align-items:center; justify-content:center; gap:8px; padding:13px 16px; background:#E0B52B; color:#123C2F; font-family:'DM Mono',monospace; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; font-weight:700; border:none">Live scoreboard →</a>
+
   <sc-if value="{{ needsSetup }}" hint-placeholder-val="{{ false }}">
     <div style="border:3px solid #E0B52B; background:#1B4F3E; padding:20px; display:flex; flex-direction:column; gap:14px">
       <div style="font-family:'Archivo Black',Helvetica,sans-serif; font-size:17px; text-transform:uppercase; letter-spacing:-0.01em; color:#E0B52B">One-time setup</div>
@@ -101,8 +103,7 @@ a{color:#E0B52B;text-decoration:none}
         <div style="font-family:'DM Mono',monospace; font-size:11px; line-height:1.5; color:#8FA898; text-align:center">{{ syncStatus }}</div>
       </div>
 
-      <div style="border-top:2px solid #3B5546; padding-top:16px; display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center">
-        <a href="scoreboard.html" style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase">Live scoreboard →</a>
+      <div style="border-top:2px solid #3B5546; padding-top:16px; display:flex; flex-wrap:wrap; gap:10px; justify-content:flex-end; align-items:center">
         <sc-if value="{{ canSwitch }}" hint-placeholder-val="{{ true }}">
           <button onClick="{{ switchTeam }}" style="padding:9px 14px; border:2px solid #3B5546; background:transparent; color:#8FA898; font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; cursor:pointer">Change team</button>
         </sc-if>
