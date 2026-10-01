@@ -63,15 +63,15 @@ a:hover{color:#FBF8F0}
   <div style="height:22px"></div>
 
   <div style="border-top:2px solid #3B5546">
-    <div style="display:grid; grid-template-columns:44px minmax(0,1fr) 64px 64px 64px; gap:12px; padding:11px 14px; border-bottom:2px solid #3B5546; font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:#8FA898">
+    <div style="display:grid; grid-template-columns:clamp(28px,7vw,44px) minmax(0,1fr) clamp(38px,11vw,64px) clamp(38px,11vw,64px) clamp(42px,12vw,64px); gap:clamp(6px,2vw,12px); padding:11px 14px; border-bottom:2px solid #3B5546; font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:#8FA898">
       <div>Pos</div>
-      <button onClick="{{ sortByName }}" style="text-align:left; background:none; border:none; padding:0; cursor:pointer; color:{{ nameColor }}; font-family:inherit; font-size:inherit; letter-spacing:inherit; text-transform:inherit">Team{{ nameArrow }}</button>
-      <button onClick="{{ sortByThru }}" style="text-align:right; background:none; border:none; padding:0; cursor:pointer; color:{{ thruColor }}; font-family:inherit; font-size:inherit; letter-spacing:inherit; text-transform:inherit">Thru{{ thruArrow }}</button>
-      <button onClick="{{ sortByGross }}" style="text-align:right; background:none; border:none; padding:0; cursor:pointer; color:{{ grossColor }}; font-family:inherit; font-size:inherit; letter-spacing:inherit; text-transform:inherit">Gross{{ grossArrow }}</button>
-      <button onClick="{{ sortByNet }}" style="text-align:right; background:none; border:none; padding:0; cursor:pointer; color:{{ netColor }}; font-family:inherit; font-size:inherit; letter-spacing:inherit; text-transform:inherit">Net{{ netArrow }}</button>
+      <button onClick="{{ sortByName }}" style="text-align:left; background:none; border:none; padding:10px 4px; margin:-10px -4px; cursor:pointer; color:{{ nameColor }}; font-family:inherit; font-size:inherit; letter-spacing:inherit; text-transform:inherit">Team{{ nameArrow }}</button>
+      <button onClick="{{ sortByThru }}" style="text-align:right; background:none; border:none; padding:10px 4px; margin:-10px -4px; cursor:pointer; color:{{ thruColor }}; font-family:inherit; font-size:inherit; letter-spacing:inherit; text-transform:inherit">Thru{{ thruArrow }}</button>
+      <button onClick="{{ sortByGross }}" style="text-align:right; background:none; border:none; padding:10px 4px; margin:-10px -4px; cursor:pointer; color:{{ grossColor }}; font-family:inherit; font-size:inherit; letter-spacing:inherit; text-transform:inherit">Gross{{ grossArrow }}</button>
+      <button onClick="{{ sortByNet }}" style="text-align:right; background:none; border:none; padding:10px 4px; margin:-10px -4px; cursor:pointer; color:{{ netColor }}; font-family:inherit; font-size:inherit; letter-spacing:inherit; text-transform:inherit">Net{{ netArrow }}</button>
     </div>
     <sc-for list="{{ board }}" as="row" hint-placeholder-count="8">
-      <div style="display:grid; grid-template-columns:44px minmax(0,1fr) 64px 64px 64px; gap:12px; padding:15px 14px; border-bottom:2px solid #3B5546; align-items:center">
+      <div style="display:grid; grid-template-columns:clamp(28px,7vw,44px) minmax(0,1fr) clamp(38px,11vw,64px) clamp(38px,11vw,64px) clamp(42px,12vw,64px); gap:clamp(6px,2vw,12px); padding:15px 14px; border-bottom:2px solid #3B5546; align-items:center; background:{{ row.rowBg }}">
         <div style="font-family:'Archivo Black',sans-serif; font-size:19px; letter-spacing:-0.02em; color:{{ row.posColor }}">{{ row.pos }}</div>
         <div style="min-width:0">
           <div style="font-family:'DM Mono',monospace; font-size:14px; color:#F4EFE2; overflow-wrap:break-word">{{ row.name }}</div>
@@ -102,13 +102,35 @@ a:hover{color:#FBF8F0}
     </sc-for>
   </div>
 
+  <h2 style="margin:56px 0 6px; font-family:'Archivo Black',Helvetica,sans-serif; font-size:30px; text-transform:uppercase; letter-spacing:-0.025em">Hole-by-hole</h2>
+  <p style="margin:0 0 14px; font-family:'DM Mono',monospace; font-size:12px; letter-spacing:0.06em; color:#8FA898">Every team, every hole. <span style="color:#E0B52B; font-weight:700">Gold</span> cells are the outright-lowest score on that hole right now — same team as that hole's winner in Skins above.</p>
+  <div style="display:flex; gap:8px; margin-bottom:22px">
+    <button onClick="{{ setHoleAll }}" style="padding:9px 14px; border:2px solid {{ holeAllBorder }}; background:{{ holeAllBg }}; color:{{ holeAllFg }}; font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; cursor:pointer">All 18</button>
+    <button onClick="{{ setHoleFront }}" style="padding:9px 14px; border:2px solid {{ holeFrontBorder }}; background:{{ holeFrontBg }}; color:{{ holeFrontFg }}; font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; cursor:pointer">Front 9</button>
+    <button onClick="{{ setHoleBack }}" style="padding:9px 14px; border:2px solid {{ holeBackBorder }}; background:{{ holeBackBg }}; color:{{ holeBackFg }}; font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; cursor:pointer">Back 9</button>
+  </div>
+  <div style="overflow-x:auto; border-top:2px solid #3B5546; border-left:2px solid #3B5546; margin-bottom:20px">
+    <div style="display:grid; grid-template-columns:200px repeat({{ holeCount }},44px); width:max-content">
+      <div style="border-right:2px solid #3B5546; border-bottom:2px solid #3B5546; padding:10px 12px; font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:#8FA898; position:sticky; left:0; background:#123C2F">Team</div>
+      <sc-for list="{{ holeNums }}" as="hn" hint-placeholder-count="18">
+        <div style="border-right:2px solid #3B5546; border-bottom:2px solid #3B5546; padding:10px 6px; text-align:center; font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.05em; text-transform:uppercase; color:#8FA898">{{ hn }}</div>
+      </sc-for>
+      <sc-for list="{{ detailRows }}" as="row" hint-placeholder-count="12">
+        <div style="border-right:2px solid #3B5546; border-bottom:2px solid #3B5546; padding:10px 12px; font-family:'DM Mono',monospace; font-size:12px; color:{{ row.nameFg }}; overflow-wrap:break-word; position:sticky; left:0; background:{{ row.nameBg }}">{{ row.name }}</div>
+        <sc-for list="{{ row.cells }}" as="cell" hint-placeholder-count="18">
+          <div style="border-right:2px solid #3B5546; border-bottom:2px solid #3B5546; padding:10px 6px; text-align:center; font-family:'DM Mono',monospace; font-size:13px; font-weight:{{ cell.fw }}; background:{{ cell.bg }}; color:{{ cell.fg }}">{{ cell.v }}</div>
+        </sc-for>
+      </sc-for>
+    </div>
+  </div>
+
   <p style="margin:44px 0 0; font-family:'DM Mono',monospace; font-size:12px; line-height:1.6; color:#8FA898; max-width:620px; text-wrap:pretty">Refreshes automatically every 30 seconds. Resubmit the form to add holes or correct a score — the most recent entry for a hole always wins.</p>
 </div>
 
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1080},&quot;responsesCsvUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://docs.google.com/spreadsheets/d/e/2PACX-1vQoBK_sJCd2u008B5pDvLchd7iPQ30POrdFgSd0CXfFZO0gEWLOIlg478A6Cc6MDKj6fC9wPEs5aX5m/pub?gid=1019876684&amp;single=true&amp;output=csv&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Data&quot;},&quot;teeSheetCsvUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://docs.google.com/spreadsheets/d/e/2PACX-1vQ3dsuBO4KVfRMtFiqbqm_-5YykxYuNmkXlE8P6L7KcNIFRiOteD8NM4F6NMqnmrOU0m2p8HG3EQmyc/pub?gid=2114113616&amp;single=true&amp;output=csv&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Data&quot;}}">
 class Component extends DCLogic {
-  state = { scores: {}, hcps: {}, order: [], updated: null, warn: "", entries: 0, sortBy: "net", sortDir: "asc", finishedOnly: false };
+  state = { scores: {}, hcps: {}, order: [], updated: null, warn: "", entries: 0, sortBy: "net", sortDir: "asc", finishedOnly: false, holeRange: "all" };
 
   setSort(col) {
     const defaultDir = { name: "asc", thru: "desc", gross: "asc", net: "asc" };
@@ -227,6 +249,7 @@ class Component extends DCLogic {
     const { scores, hcps } = this.state;
     // Hole difficulty rank at Herndon Centennial, 1 = hardest.
     const HOLE_HCP = {1:1,2:9,3:7,4:13,5:15,6:5,7:11,8:3,9:17,10:12,11:2,12:8,13:6,14:18,15:14,16:16,17:10,18:4};
+    const HOLE_PAR = {1:4,2:4,3:5,4:4,5:3,6:4,7:3,8:4,9:4,10:4,11:4,12:4,13:4,14:3,15:5,16:3,17:5,18:4};
     const hcpOrder = Object.keys(HOLE_HCP).map(Number).sort((a, b) => HOLE_HCP[a] - HOLE_HCP[b]);
     const tiebreak = (a, b) => {
       for (const h of hcpOrder) {
@@ -282,6 +305,8 @@ class Component extends DCLogic {
       ? conflictNames.map(n => n + " is currently up for both Net and Gross").join("; ") + " — a team can only win one, so pick manually and the runner-up takes the other."
       : "";
 
+    const leaderKey = teams.length ? teams.slice().sort((a, b) => a.net - b.net || tiebreak(a, b))[0].key : null;
+
     const board = teams.map((t, i) => ({
       pos: i + 1,
       posColor: i === 0 ? "#E0B52B" : "#8FA898",
@@ -290,6 +315,7 @@ class Component extends DCLogic {
       thru: t.thru,
       gross: t.gross,
       net: t.net,
+      rowBg: t.key === leaderKey ? "rgba(224,181,43,0.14)" : "transparent",
       badgeLabel: (badgesByKey[t.key] || []).join(" · "),
       badgeColor: (badgesByKey[t.key] || []).length > 1 ? "#E05A2B" : "#E0B52B",
       badgeBg: (badgesByKey[t.key] || []).length > 1 ? "rgba(224,90,43,0.15)" : "transparent"
@@ -324,9 +350,61 @@ class Component extends DCLogic {
       }
     }
 
+    const allHoleNums = Array.from({ length: 18 }, (_, i) => i + 1);
+    const holeRange = this.state.holeRange || "all";
+    const holeNums = holeRange === "front" ? allHoleNums.slice(0, 9) : holeRange === "back" ? allHoleNums.slice(9) : allHoleNums;
+    const scoreColor = (v, par) => {
+      const diff = v - par;
+      if (diff <= -2) return "#E0B52B";
+      if (diff === -1) return "#4C9A6E";
+      if (diff === 0) return "#F4EFE2";
+      if (diff === 1) return "#E05A2B";
+      return "#C23B2E";
+    };
+    // Which team currently has the outright-lowest (skin-winning) score on each hole, for highlighting below.
+    const holeWinnerKey = {};
+    allHoleNums.forEach(n => {
+      const played = teams.filter(t => t.holes[n] != null);
+      if (!played.length) return;
+      const best = Math.min.apply(null, played.map(t => t.holes[n]));
+      const winners = played.filter(t => t.holes[n] === best);
+      if (winners.length === 1) holeWinnerKey[n] = winners[0].key;
+    });
+    const detailRows = teams.map(t => ({
+      key: t.key,
+      name: t.name,
+      nameFg: t.key === leaderKey ? "#123C2F" : "#F4EFE2",
+      nameBg: t.key === leaderKey ? "#E0B52B" : "#123C2F",
+      cells: holeNums.map(n => {
+        const has = t.holes[n] != null;
+        const isWinner = has && holeWinnerKey[n] === t.key;
+        return {
+          v: has ? t.holes[n] : "—",
+          fg: has ? scoreColor(t.holes[n], HOLE_PAR[n]) : "#3B5546",
+          bg: isWinner ? "rgba(224,181,43,0.28)" : "transparent",
+          fw: isWinner ? "700" : "400"
+        };
+      })
+    }));
+
     return {
       board,
       skins,
+      holeNums,
+      holeCount: holeNums.length,
+      detailRows,
+      setHoleAll: () => this.setState({ holeRange: "all" }),
+      setHoleFront: () => this.setState({ holeRange: "front" }),
+      setHoleBack: () => this.setState({ holeRange: "back" }),
+      holeAllBg: holeRange === "all" ? "#E0B52B" : "transparent",
+      holeAllFg: holeRange === "all" ? "#123C2F" : "#8FA898",
+      holeAllBorder: holeRange === "all" ? "#E0B52B" : "#3B5546",
+      holeFrontBg: holeRange === "front" ? "#E0B52B" : "transparent",
+      holeFrontFg: holeRange === "front" ? "#123C2F" : "#8FA898",
+      holeFrontBorder: holeRange === "front" ? "#E0B52B" : "#3B5546",
+      holeBackBg: holeRange === "back" ? "#E0B52B" : "transparent",
+      holeBackFg: holeRange === "back" ? "#123C2F" : "#8FA898",
+      holeBackBorder: holeRange === "back" ? "#E0B52B" : "#3B5546",
       sortByName: () => this.setSort("name"),
       sortByThru: () => this.setSort("thru"),
       sortByGross: () => this.setSort("gross"),

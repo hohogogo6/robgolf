@@ -12,10 +12,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
 <style>doc-page:not(:defined){visibility:hidden}</style>
 <script src="./doc-page.js"></script>
 </helmet>
-<doc-page size="letter">
+<doc-page size="letter" ref="{{ docRef }}">
 <sc-for list="{{ sheets }}" as="sheet" hint-placeholder-count="5">
   <section class="page" style="padding:0; font-family:Archivo,Helvetica,sans-serif; position:relative">
     <div style="height:5.5in; box-sizing:border-box; display:flex">
@@ -29,9 +30,12 @@
             <tr><td style="padding:2px 8px">White</td><td style="padding:2px 8px">4,900</td><td style="padding:2px 8px">63.7</td><td style="padding:2px 8px">107</td></tr>
           </tbody>
         </table>
-        <div style="font-size:11px; color:#3B5546; text-align:center; max-width:2.8in; margin-top:6px">Thank you for playing in the Clam Bake &amp; Golf Championship.</div>
         <div style="margin-top:10px; font-family:'DM Mono',monospace; font-size:9px; letter-spacing:0.1em; text-transform:uppercase; color:#3B5546">Thanks to our generous sponsors</div>
-        <img src="./uploads/barn-burner-logo.png" alt="Barn Burner" style="height:0.5in; width:auto; margin-top:2px">
+        <div style="display:flex; align-items:center; justify-content:center; gap:14px; margin-top:2px">
+          <img src="./uploads/barn-burner-logo.png" alt="Barn Burner" style="height:0.75in; width:auto">
+          <img src="./uploads/go-fore-it-media-logo.png" alt="Go Fore It Media" style="height:0.75in; width:auto">
+          <img src="./uploads/legler-ice-logo.png" alt="Legler Ice" style="height:0.75in; width:auto">
+        </div>
       </div>
       <div style="width:4.25in; box-sizing:border-box; padding:0.4in 0.32in; background:#FFFFFF; color:#123C2F; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:12px">
         <img src="./uploads/clam-bake-logo.png" alt="Clam Bake &amp; Golf Championship logo" style="width:3.2in; height:auto">
@@ -39,6 +43,8 @@
         <div style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.05em; color:#E05A2B">Saturday, October 3 · 2026</div>
         <div style="font-size:12px; color:#3B5546">Herndon Centennial Golf Course</div>
         <div style="margin-top:4px; font-family:'DM Mono',monospace; font-size:9.5px; letter-spacing:0.08em; text-transform:uppercase; border-top:1px solid #123C2F; border-bottom:1px solid #123C2F; padding:4px 0">Playing the Blue Tees</div>
+        <div style="font-family:'DM Mono',monospace; font-size:10px; color:#3B5546">{{ sheet.left.teamA }} <span style="color:#E05A2B">vs</span> {{ sheet.left.teamB }}</div>
+        <div style="margin-top:8px; font-size:9px; line-height:1.45; color:#3B5546; max-width:3in">Drink responsibly. Ride-share if you need it — overnight parking is available at the course. And party! — Love, The Clam-Bakers</div>
       </div>
     </div>
     <div style="height:5.5in; box-sizing:border-box; display:flex">
@@ -52,9 +58,12 @@
             <tr><td style="padding:2px 8px">White</td><td style="padding:2px 8px">4,900</td><td style="padding:2px 8px">63.7</td><td style="padding:2px 8px">107</td></tr>
           </tbody>
         </table>
-        <div style="font-size:11px; color:#3B5546; text-align:center; max-width:2.8in; margin-top:6px">Thank you for playing in the Clam Bake &amp; Golf Championship.</div>
         <div style="margin-top:10px; font-family:'DM Mono',monospace; font-size:9px; letter-spacing:0.1em; text-transform:uppercase; color:#3B5546">Thanks to our generous sponsors</div>
-        <img src="./uploads/barn-burner-logo.png" alt="Barn Burner" style="height:0.5in; width:auto; margin-top:2px">
+        <div style="display:flex; align-items:center; justify-content:center; gap:14px; margin-top:2px">
+          <img src="./uploads/barn-burner-logo.png" alt="Barn Burner" style="height:0.75in; width:auto">
+          <img src="./uploads/go-fore-it-media-logo.png" alt="Go Fore It Media" style="height:0.75in; width:auto">
+          <img src="./uploads/legler-ice-logo.png" alt="Legler Ice" style="height:0.75in; width:auto">
+        </div>
       </div>
       <div style="width:4.25in; box-sizing:border-box; padding:0.4in 0.32in; background:#FFFFFF; color:#123C2F; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:12px">
         <img src="./uploads/clam-bake-logo.png" alt="Clam Bake &amp; Golf Championship logo" style="width:3.2in; height:auto">
@@ -62,6 +71,8 @@
         <div style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.05em; color:#E05A2B">Saturday, October 3 · 2026</div>
         <div style="font-size:12px; color:#3B5546">Herndon Centennial Golf Course</div>
         <div style="margin-top:4px; font-family:'DM Mono',monospace; font-size:9.5px; letter-spacing:0.08em; text-transform:uppercase; border-top:1px solid #123C2F; border-bottom:1px solid #123C2F; padding:4px 0">Playing the Blue Tees</div>
+        <div style="font-family:'DM Mono',monospace; font-size:10px; color:#3B5546">{{ sheet.right.teamA }} <span style="color:#E05A2B">vs</span> {{ sheet.right.teamB }}</div>
+        <div style="margin-top:8px; font-size:9px; line-height:1.45; color:#3B5546; max-width:3in">Drink responsibly. Ride-share if you need it — overnight parking is available at the course. And party! — Love, The Clam-Bakers</div>
       </div>
     </div>
   </section>
@@ -123,23 +134,45 @@
         </tbody>
       </table>
 
-      <div style="display:flex; gap:0.22in; flex:1 1 auto; min-height:0">
+      <div style="display:flex; gap:0.18in; flex:1 1 auto; min-height:0">
         <div style="flex:1 1 50%">
-          <div style="font-family:'Archivo Black',Helvetica,sans-serif; font-size:12px; text-transform:uppercase; margin-bottom:6px">How We Play</div>
-          <ul style="margin:0; padding-left:15px; font-size:11px; line-height:1.55; color:#123C2F">
-            <li>2-person scramble — both tee off, play best ball.</li>
-            <li>Skins: low team score wins the hole, ties carry.</li>
+          <div style="font-family:'Archivo Black',Helvetica,sans-serif; font-size:11px; text-transform:uppercase; margin-bottom:6px">How We Play</div>
+          <ul style="margin:0; padding-left:15px; font-size:10px; line-height:1.5; color:#123C2F">
+            <li>2-person scramble: both hit tee shot, choose best result, hit again — continue until holed out or double bogey max.</li>
+            <li>Skins: lowest team score wins, no carryovers or handicaps applied. Value set by total skins won.</li>
             <li>Turn in your card at the clubhouse after 18.</li>
           </ul>
-        </div>
-        <div style="flex:1 1 50%; border-left:1px solid #123C2F; padding-left:0.22in">
-          <div style="font-family:'Archivo Black',Helvetica,sans-serif; font-size:10px; text-transform:uppercase; margin-bottom:5px">Net Score</div>
+          <div style="margin-top:12px; font-family:'Archivo Black',Helvetica,sans-serif; font-size:10px; text-transform:uppercase; margin-bottom:5px">Net Score</div>
           <table style="width:100%; border-collapse:collapse; font-family:'DM Mono',monospace; font-size:9px">
             <tr><td style="border:1px solid #123C2F; padding:2px 5px"></td><td style="border:1px solid #123C2F; padding:2px 5px; text-align:center; color:#123C2F; font-size:9px; line-height:1.1; white-space:pre-line">{{ sheet.left.teamAShort }}</td><td style="border:1px solid #123C2F; padding:2px 5px; text-align:center; color:#123C2F; font-size:9px; line-height:1.1; white-space:pre-line">{{ sheet.left.teamBShort }}</td></tr>
             <tr><td style="border:1px solid #123C2F; padding:2px 5px">Gross</td><td style="border:1px solid #123C2F; padding:2px 5px"></td><td style="border:1px solid #123C2F; padding:2px 5px"></td></tr>
             <tr><td style="border:1px solid #123C2F; padding:2px 5px">Hcp</td><td style="border:1px solid #123C2F; padding:2px 5px"></td><td style="border:1px solid #123C2F; padding:2px 5px"></td></tr>
             <tr><td style="border:1.5px solid #E05A2B; padding:2px 5px; font-weight:700">Net</td><td style="border:1.5px solid #E05A2B; padding:2px 5px"></td><td style="border:1.5px solid #E05A2B; padding:2px 5px"></td></tr>
           </table>
+        </div>
+        <div style="flex:1 1 50%; border-left:1px solid #123C2F; padding-left:0.18in">
+          <div style="font-family:'Archivo Black',Helvetica,sans-serif; font-size:11px; text-transform:uppercase">Scan To Score</div>
+          <div style="display:flex; justify-content:center; gap:16px; margin-top:6px">
+            <div style="display:flex; flex-direction:column; align-items:center; gap:4px">
+              <div style="width:0.62in; height:0.62in; border:1px solid #123C2F; background-color:#FFFFFF; overflow:hidden">
+                <img data-qr-name="{{ sheet.left.urlA }}" alt="Team A QR" style="width:100%; height:100%; object-fit:fill; image-rendering:pixelated">
+              </div>
+              <div style="font-family:'DM Mono',monospace; font-size:6.5px; color:#3B5546; line-height:1.1; white-space:pre-line; text-align:center">{{ sheet.left.teamAShort }}</div>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:center; gap:4px">
+              <div style="width:0.62in; height:0.62in; border:1px solid #123C2F; background-color:#FFFFFF; overflow:hidden">
+                <img data-qr-name="{{ sheet.left.urlB }}" alt="Team B QR" style="width:100%; height:100%; object-fit:fill; image-rendering:pixelated">
+              </div>
+              <div style="font-family:'DM Mono',monospace; font-size:6.5px; color:#3B5546; line-height:1.1; white-space:pre-line; text-align:center">{{ sheet.left.teamBShort }}</div>
+            </div>
+          </div>
+          <div style="margin-top:14px; font-family:'Archivo Black',Helvetica,sans-serif; font-size:11px; text-transform:uppercase">Live Leaderboard</div>
+          <div style="display:flex; flex-direction:column; align-items:center; gap:4px; margin-top:6px">
+            <div style="width:0.62in; height:0.62in; border:1px solid #123C2F; background-color:#FFFFFF; overflow:hidden; flex:0 0 auto">
+              <img data-qr-kind="leaderboard" alt="Leaderboard QR" style="width:100%; height:100%; object-fit:fill; image-rendering:pixelated">
+            </div>
+            <div style="font-family:'DM Mono',monospace; font-size:7px; color:#3B5546; text-align:center; word-break:break-all; max-width:1.6in">{{ leaderboardUrl }}</div>
+          </div>
         </div>
       </div>
     </div>
@@ -201,23 +234,45 @@
         </tbody>
       </table>
 
-      <div style="display:flex; gap:0.22in; flex:1 1 auto; min-height:0">
+      <div style="display:flex; gap:0.18in; flex:1 1 auto; min-height:0">
         <div style="flex:1 1 50%">
-          <div style="font-family:'Archivo Black',Helvetica,sans-serif; font-size:12px; text-transform:uppercase; margin-bottom:6px">How We Play</div>
-          <ul style="margin:0; padding-left:15px; font-size:11px; line-height:1.55; color:#123C2F">
-            <li>2-person scramble — both tee off, play best ball.</li>
-            <li>Skins: low team score wins the hole, ties carry.</li>
+          <div style="font-family:'Archivo Black',Helvetica,sans-serif; font-size:11px; text-transform:uppercase; margin-bottom:6px">How We Play</div>
+          <ul style="margin:0; padding-left:15px; font-size:10px; line-height:1.5; color:#123C2F">
+            <li>2-person scramble: both hit tee shot, choose best result, hit again — continue until holed out or double bogey max.</li>
+            <li>Skins: lowest team score wins, no carryovers or handicaps applied. Value set by total skins won.</li>
             <li>Turn in your card at the clubhouse after 18.</li>
           </ul>
-        </div>
-        <div style="flex:1 1 50%; border-left:1px solid #123C2F; padding-left:0.22in">
-          <div style="font-family:'Archivo Black',Helvetica,sans-serif; font-size:10px; text-transform:uppercase; margin-bottom:5px">Net Score</div>
+          <div style="margin-top:12px; font-family:'Archivo Black',Helvetica,sans-serif; font-size:10px; text-transform:uppercase; margin-bottom:5px">Net Score</div>
           <table style="width:100%; border-collapse:collapse; font-family:'DM Mono',monospace; font-size:9px">
             <tr><td style="border:1px solid #123C2F; padding:2px 5px"></td><td style="border:1px solid #123C2F; padding:2px 5px; text-align:center; color:#123C2F; font-size:9px; line-height:1.1; white-space:pre-line">{{ sheet.right.teamAShort }}</td><td style="border:1px solid #123C2F; padding:2px 5px; text-align:center; color:#123C2F; font-size:9px; line-height:1.1; white-space:pre-line">{{ sheet.right.teamBShort }}</td></tr>
             <tr><td style="border:1px solid #123C2F; padding:2px 5px">Gross</td><td style="border:1px solid #123C2F; padding:2px 5px"></td><td style="border:1px solid #123C2F; padding:2px 5px"></td></tr>
             <tr><td style="border:1px solid #123C2F; padding:2px 5px">Hcp</td><td style="border:1px solid #123C2F; padding:2px 5px"></td><td style="border:1px solid #123C2F; padding:2px 5px"></td></tr>
             <tr><td style="border:1.5px solid #E05A2B; padding:2px 5px; font-weight:700">Net</td><td style="border:1.5px solid #E05A2B; padding:2px 5px"></td><td style="border:1.5px solid #E05A2B; padding:2px 5px"></td></tr>
           </table>
+        </div>
+        <div style="flex:1 1 50%; border-left:1px solid #123C2F; padding-left:0.18in">
+          <div style="font-family:'Archivo Black',Helvetica,sans-serif; font-size:11px; text-transform:uppercase">Scan To Score</div>
+          <div style="display:flex; justify-content:center; gap:16px; margin-top:6px">
+            <div style="display:flex; flex-direction:column; align-items:center; gap:4px">
+              <div style="width:0.62in; height:0.62in; border:1px solid #123C2F; background-color:#FFFFFF; overflow:hidden">
+                <img data-qr-name="{{ sheet.right.urlA }}" alt="Team A QR" style="width:100%; height:100%; object-fit:fill; image-rendering:pixelated">
+              </div>
+              <div style="font-family:'DM Mono',monospace; font-size:6.5px; color:#3B5546; line-height:1.1; white-space:pre-line; text-align:center">{{ sheet.right.teamAShort }}</div>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:center; gap:4px">
+              <div style="width:0.62in; height:0.62in; border:1px solid #123C2F; background-color:#FFFFFF; overflow:hidden">
+                <img data-qr-name="{{ sheet.right.urlB }}" alt="Team B QR" style="width:100%; height:100%; object-fit:fill; image-rendering:pixelated">
+              </div>
+              <div style="font-family:'DM Mono',monospace; font-size:6.5px; color:#3B5546; line-height:1.1; white-space:pre-line; text-align:center">{{ sheet.right.teamBShort }}</div>
+            </div>
+          </div>
+          <div style="margin-top:14px; font-family:'Archivo Black',Helvetica,sans-serif; font-size:11px; text-transform:uppercase">Live Leaderboard</div>
+          <div style="display:flex; flex-direction:column; align-items:center; gap:4px; margin-top:6px">
+            <div style="width:0.62in; height:0.62in; border:1px solid #123C2F; background-color:#FFFFFF; overflow:hidden; flex:0 0 auto">
+              <img data-qr-kind="leaderboard" alt="Leaderboard QR" style="width:100%; height:100%; object-fit:fill; image-rendering:pixelated">
+            </div>
+            <div style="font-family:'DM Mono',monospace; font-size:7px; color:#3B5546; text-align:center; word-break:break-all; max-width:1.6in">{{ leaderboardUrl }}</div>
+          </div>
         </div>
       </div>
     </div>
@@ -226,11 +281,12 @@
 </doc-page>
 
 </x-dc>
-<script type="text/x-dc" data-dc-script>
+<script type="text/x-dc" data-dc-script data-props="{&quot;teeSheetCsvUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;entryPageUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://robgolf.vercel.app/score-entry.html&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;scoreboardUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://robgolf.vercel.app/scoreboard.html&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
-  state = { sheets: undefined };
+  state = { sheets: undefined, qrReady: false };
 
   componentDidMount() {
+    this.waitQr();
     const url = this.props.teeSheetCsvUrl || "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ3dsuBO4KVfRMtFiqbqm_-5YykxYuNmkXlE8P6L7KcNIFRiOteD8NM4F6NMqnmrOU0m2p8HG3EQmyc/pub?gid=2114113616&single=true&output=csv";
     fetch(url + "&_=" + Date.now(), { cache: "no-store" })
       .then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.text(); })
@@ -244,7 +300,9 @@ class Component extends DCLogic {
             teamA: aNames.join(" / ") || "Open",
             teamB: bNames.join(" / ") || "Open",
             teamAShort: this.shortLabel(aNames),
-            teamBShort: this.shortLabel(bNames)
+            teamBShort: this.shortLabel(bNames),
+            urlA: aNames.join("/"),
+            urlB: bNames.join("/")
           });
         });
         const sheets = [];
@@ -257,8 +315,52 @@ class Component extends DCLogic {
   }
 
   fallbackSheet() {
-    const blank = { teamA: "Open", teamB: "Open", teamAShort: "Open", teamBShort: "Open" };
+    const blank = { teamA: "Open", teamB: "Open", teamAShort: "Open", teamBShort: "Open", urlA: "", urlB: "" };
     return { left: blank, right: blank };
+  }
+
+  waitQr(n) {
+    n = n || 0;
+    if (typeof window.qrcode === "function") { this.setState({ qrReady: true }, () => this.paintQr()); return; }
+    if (n > 60) return;
+    setTimeout(() => this.waitQr(n + 1), 100);
+  }
+
+  entryUrl(name) {
+    if (!name) return "";
+    const base = this.props.entryPageUrl || "https://robgolf.vercel.app/score-entry.html";
+    return base + "?team=" + encodeURIComponent(name);
+  }
+
+  leaderboardUrl() {
+    return this.props.scoreboardUrl || "https://robgolf.vercel.app/scoreboard.html";
+  }
+
+  qrFor(url) {
+    if (!this.state.qrReady || !url) return "";
+    try {
+      const qr = window.qrcode(0, "M");
+      qr.addData(url);
+      qr.make();
+      return qr.createDataURL(4, 2);
+    } catch (e) { return ""; }
+  }
+
+  componentDidUpdate() { this.paintQr(); }
+
+  paintQr() {
+    if (!this.docEl || !this.state.qrReady) return;
+    const lbUrl = this.leaderboardUrl();
+    const lbQr = this.qrFor(lbUrl);
+    this.docEl.querySelectorAll('[data-qr-kind="leaderboard"]').forEach(img => {
+      if (lbQr) img.src = lbQr; else img.removeAttribute("src");
+    });
+    this.docEl.querySelectorAll("[data-qr-name]").forEach(img => {
+      const name = img.getAttribute("data-qr-name");
+      const url = this.entryUrl(name);
+      const qr = this.qrFor(url);
+      if (qr) img.src = qr; else img.removeAttribute("src");
+    });
   }
 
   shortLabel(namesArr) {
@@ -285,7 +387,11 @@ class Component extends DCLogic {
   }
 
   renderVals() {
-    return { sheets: this.state.sheets };
+    return {
+      sheets: this.state.sheets,
+      leaderboardUrl: this.leaderboardUrl(),
+      docRef: (el) => { this.docEl = el; if (el) this.paintQr(); }
+    };
   }
 }
 
