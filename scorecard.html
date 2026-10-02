@@ -295,12 +295,13 @@ class Component extends DCLogic {
         this.parseCsv(txt).slice(1).forEach(c => {
           if (!/^\d+$/.test((c[0] || "").trim())) return;
           const aNames = this.names(c[2]), bNames = this.names(c[3]);
+          const aShortNames = this.names(c[7]), bShortNames = this.names(c[8]);
           if (!aNames.length && !bNames.length) return;
           cards.push({
             teamA: aNames.join(" / ") || "Open",
             teamB: bNames.join(" / ") || "Open",
-            teamAShort: this.shortLabel(aNames),
-            teamBShort: this.shortLabel(bNames),
+            teamAShort: this.shortLabel(aShortNames.length ? aShortNames : aNames),
+            teamBShort: this.shortLabel(bShortNames.length ? bShortNames : bNames),
             urlA: aNames.join("/"),
             urlB: bNames.join("/")
           });
@@ -365,7 +366,9 @@ class Component extends DCLogic {
 
   shortLabel(namesArr) {
     if (!namesArr.length) return "Open";
-    return namesArr.map(n => n.split(" ").pop()).join("\n");
+    const parts = [];
+    namesArr.forEach(n => n.split("&").forEach(p => { p = p.trim(); if (p) parts.push(p); }));
+    return parts.map(n => n.split(" ").pop()).join(" & ");
   }
 
   names(v) {
